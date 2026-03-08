@@ -8,7 +8,6 @@ import { ParticleBackground } from './components/ParticleBackground';
 // Lazy load below-the-fold components to accelerate initial page load speed
 const GlowCard = lazy(() => import('./components/GlowCard').then(m => ({ default: m.GlowCard })));
 const AnimatedCounter = lazy(() => import('./components/AnimatedCounter').then(m => ({ default: m.AnimatedCounter })));
-const XRaySlider = lazy(() => import('./components/XRaySlider').then(m => ({ default: m.XRaySlider })));
 const GlobalMouseGlow = lazy(() => import('./components/GlobalMouseGlow').then(m => ({ default: m.GlobalMouseGlow })));
 const ROICalculator = lazy(() => import('./components/ROICalculator').then(m => ({ default: m.ROICalculator })));
 const COICalculator = lazy(() => import('./components/COICalculator').then(m => ({ default: m.COICalculator })));
@@ -654,22 +653,6 @@ export default function App() {
                                     <div className="text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={27} suffix="%" duration={2} /></div>
                                     <p className="text-gray-400 text-sm font-semibold max-w-[150px] mx-auto leading-snug">Caída en costos ocultos<br />y cuellos de botella</p>
                                 </motion.div>
-                            </Suspense>
-                        </motion.div>
-
-                        {/* X-Ray Slider */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            className="mt-24 pt-12 border-t border-gray-900"
-                        >
-                            <div className="text-center mb-8">
-                                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Visión de Rayos-X GenIA</h3>
-                                <p className="text-gray-400">Desliza para descubrir cómo limpiamos tu flujo de trabajo de la noche a la mañana.</p>
-                            </div>
-                            <Suspense fallback={null}>
-                                <XRaySlider />
                             </Suspense>
                         </motion.div>
                     </div>
