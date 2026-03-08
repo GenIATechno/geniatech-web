@@ -608,53 +608,53 @@ export default function App() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
+                            className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 mb-20"
                         >
                             <Suspense fallback={null}>
                                 {/* Card 1 */}
                                 <motion.div variants={fadeUpVariant} className="flex h-full">
-                                    <GlowCard className="bg-[#0A0A0A] border border-gray-800 p-8 rounded-[24px] w-full flex flex-col shadow-xl cursor-default">
-                                        <div className="bg-safety text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-[0_8px_16px_rgba(255,87,34,0.3)] relative z-10 transition-transform group-hover:scale-110">
-                                            <MessageSquare className="w-6 h-6" />
+                                    <GlowCard className="bg-[#0A0A0A] border border-gray-800 p-5 md:p-8 rounded-[24px] w-full flex flex-col shadow-xl cursor-default">
+                                        <div className="bg-safety text-white w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-[0_8px_16px_rgba(255,87,34,0.3)] relative z-10 transition-transform group-hover:scale-110">
+                                            <MessageSquare className="w-5 h-5 md:w-6 md:h-6" />
                                         </div>
-                                        <h4 className="text-2xl font-bold mb-4 text-white z-10 tracking-tight">Gestión Multi-Etapa</h4>
-                                        <p className="text-gray-400 text-[15px] leading-relaxed mb-8 flex-1 z-10">
+                                        <h4 className="text-[1.1rem] leading-tight md:text-2xl font-bold mb-2 md:mb-4 text-white z-10 tracking-tight">Gestión Multi-Etapa</h4>
+                                        <p className="text-gray-400 text-xs md:text-[15px] leading-relaxed mb-4 md:mb-8 flex-1 z-10">
                                             Automatiza todo el journey operativo con tecnología e IA que entiende el contexto y el volumen de tu negocio.
                                         </p>
-                                        <div className="text-[13px] font-bold text-safety flex items-center gap-1.5 z-10">
-                                            Optimización +300% <TrendingUp className="w-4 h-4" />
+                                        <div className="text-[10px] md:text-[13px] font-bold text-safety flex items-center gap-1.5 z-10">
+                                            Optimización +300% <TrendingUp className="w-3 h-3 md:w-4 md:h-4" />
                                         </div>
                                     </GlowCard>
                                 </motion.div>
 
                                 {/* Card 2 */}
                                 <motion.div variants={fadeUpVariant} className="flex h-full">
-                                    <GlowCard className="bg-[#0A0A0A] border border-gray-800 p-8 rounded-[24px] w-full flex flex-col shadow-xl cursor-default">
-                                        <div className="bg-safety text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-[0_8px_16px_rgba(255,87,34,0.3)] relative z-10 transition-transform group-hover:scale-110">
-                                            <Bot className="w-6 h-6" />
+                                    <GlowCard className="bg-[#0A0A0A] border border-gray-800 p-5 md:p-8 rounded-[24px] w-full flex flex-col shadow-xl cursor-default">
+                                        <div className="bg-safety text-white w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-[0_8px_16px_rgba(255,87,34,0.3)] relative z-10 transition-transform group-hover:scale-110">
+                                            <Bot className="w-5 h-5 md:w-6 md:h-6" />
                                         </div>
-                                        <h4 className="text-2xl font-bold mb-4 text-white z-10 tracking-tight">IA + Equipo Humano</h4>
-                                        <p className="text-gray-400 text-[15px] leading-relaxed mb-8 flex-1 z-10">
-                                            Combinación perfecta de automatización inteligente y experiencia humana, potenciando a tu personal actual.
+                                        <h4 className="text-[1.1rem] leading-tight md:text-2xl font-bold mb-2 md:mb-4 text-white z-10 tracking-tight">IA + Humano</h4>
+                                        <p className="text-gray-400 text-xs md:text-[15px] leading-relaxed mb-4 md:mb-8 flex-1 z-10">
+                                            Combinación perfecta de inteligencia artificial corporativa y experiencia humana.
                                         </p>
-                                        <div className="text-[13px] font-bold text-safety flex items-center gap-1.5 z-10">
-                                            Eficiencia +1200% <ShieldAlert className="w-4 h-4" />
+                                        <div className="text-[10px] md:text-[13px] font-bold text-safety flex items-center gap-1.5 z-10">
+                                            Eficiencia +1200% <ShieldAlert className="w-3 h-3 md:w-4 md:h-4" />
                                         </div>
                                     </GlowCard>
                                 </motion.div>
 
                                 {/* Card 3 */}
-                                <motion.div variants={fadeUpVariant} className="flex h-full">
-                                    <GlowCard className="bg-[#0A0A0A] border border-gray-800 p-8 rounded-[24px] w-full flex flex-col shadow-xl cursor-default">
-                                        <div className="bg-safety text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-[0_8px_16px_rgba(255,87,34,0.3)] relative z-10 transition-transform group-hover:scale-110">
-                                            <BarChart3 className="w-6 h-6" />
+                                <motion.div variants={fadeUpVariant} className="flex h-full lg:col-span-1 col-span-2 mx-auto lg:mx-0 lg:w-full w-1/2">
+                                    <GlowCard className="bg-[#0A0A0A] border border-gray-800 p-5 md:p-8 rounded-[24px] w-full flex flex-col shadow-xl cursor-default text-center items-center lg:text-left lg:items-start">
+                                        <div className="bg-safety text-white w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-[0_8px_16px_rgba(255,87,34,0.3)] relative z-10 transition-transform group-hover:scale-110">
+                                            <BarChart3 className="w-5 h-5 md:w-6 md:h-6" />
                                         </div>
-                                        <h4 className="text-2xl font-bold mb-4 text-white z-10 tracking-tight">Rendimiento Real</h4>
-                                        <p className="text-gray-400 text-[15px] leading-relaxed mb-8 flex-1 z-10">
-                                            Analytics avanzado y trazabilidad absoluta que impulsa decisiones de crecimiento sin fricción ni latencia.
+                                        <h4 className="text-[1.1rem] leading-tight md:text-2xl font-bold mb-2 md:mb-4 text-white z-10 tracking-tight">Rendimiento Real</h4>
+                                        <p className="text-gray-400 text-xs md:text-[15px] leading-relaxed mb-4 md:mb-8 flex-1 z-10">
+                                            Analytics y trazabilidad absoluta para crecimiento veloz.
                                         </p>
-                                        <div className="text-[13px] font-bold text-safety flex items-center gap-1.5 z-10">
-                                            ROI visible +400% <TrendingUp className="w-4 h-4" />
+                                        <div className="text-[10px] md:text-[13px] font-bold text-safety flex items-center gap-1.5 z-10">
+                                            ROI visible +400% <TrendingUp className="w-3 h-3 md:w-4 md:h-4" />
                                         </div>
                                     </GlowCard>
                                 </motion.div>
@@ -667,24 +667,24 @@ export default function App() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
-                            className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center mt-12 opacity-90"
+                            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 text-center mt-12 opacity-90"
                         >
                             <Suspense fallback={null}>
                                 <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { type: "spring" } } }} className="space-y-2">
-                                    <div className="text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={93} suffix="%" duration={2.5} /></div>
-                                    <p className="text-gray-400 text-sm font-semibold max-w-[150px] mx-auto leading-snug">Reducción del tiempo<br />en tareas operativas</p>
+                                    <div className="text-4xl md:text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={93} suffix="%" duration={2.5} /></div>
+                                    <p className="text-gray-400 text-xs md:text-sm font-semibold max-w-[150px] mx-auto leading-snug">Reducción del tiempo<br />en tareas operativas</p>
                                 </motion.div>
                                 <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { type: "spring" } } }} className="space-y-2">
-                                    <div className="text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={12} suffix="X" duration={3} /></div>
-                                    <p className="text-gray-400 text-sm font-semibold max-w-[150px] mx-auto leading-snug">Aumento de capacidad<br />sin sumar personal</p>
+                                    <div className="text-4xl md:text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={12} suffix="X" duration={3} /></div>
+                                    <p className="text-gray-400 text-xs md:text-sm font-semibold max-w-[150px] mx-auto leading-snug">Aumento de capacidad<br />sin sumar personal</p>
                                 </motion.div>
                                 <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { type: "spring" } } }} className="space-y-2">
-                                    <div className="text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={39} suffix="%" duration={2.8} /></div>
-                                    <p className="text-gray-400 text-sm font-semibold max-w-[150px] mx-auto leading-snug">Reducción de errores<br />y fricción humana</p>
+                                    <div className="text-4xl md:text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={39} suffix="%" duration={2.8} /></div>
+                                    <p className="text-gray-400 text-xs md:text-sm font-semibold max-w-[150px] mx-auto leading-snug">Reducción de errores<br />y fricción humana</p>
                                 </motion.div>
                                 <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { type: "spring" } } }} className="space-y-2">
-                                    <div className="text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={27} suffix="%" duration={2} /></div>
-                                    <p className="text-gray-400 text-sm font-semibold max-w-[150px] mx-auto leading-snug">Caída en costos ocultos<br />y cuellos de botella</p>
+                                    <div className="text-4xl md:text-[3.5rem] font-black text-white leading-none tracking-tighter"><AnimatedCounter to={27} suffix="%" duration={2} /></div>
+                                    <p className="text-gray-400 text-xs md:text-sm font-semibold max-w-[150px] mx-auto leading-snug">Caída en costos ocultos<br />y cuellos de botella</p>
                                 </motion.div>
                             </Suspense>
                         </motion.div>
@@ -779,16 +779,16 @@ export default function App() {
                                 className="bg-[#050505] border border-gray-900 rounded-[24px] p-8 md:p-10"
                             >
                                 <h3 className="text-xl text-center text-gray-500 font-bold mb-8 tracking-tight">El Mercado Tradicional</h3>
-                                <div className="space-y-6">
+                                <div className="grid grid-cols-2 gap-3 md:gap-6">
                                     {[
-                                        "El software a medida es lento de desarrollar (6+ meses)",
-                                        "La IA es solo para empresas gigantes multinacionales",
-                                        "Las plataformas son difíciles de adoptar por el equipo",
-                                        "Altos costos de mantenimiento y dependencia absoluta"
+                                        "Software lento (6+ meses)",
+                                        "IA solo para multinacionales",
+                                        "Plataformas difíciles",
+                                        "Altos costos y dependencia"
                                     ].map((mito, i) => (
-                                        <motion.div whileHover={{ scale: 1.02 }} key={i} className="bg-[#0A0A0A] border border-gray-800 p-5 rounded-xl flex items-start gap-4 cursor-default">
-                                            <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5 opacity-80" />
-                                            <p className="text-gray-400 text-[15px] leading-relaxed font-medium">{mito}</p>
+                                        <motion.div whileHover={{ scale: 1.02 }} key={i} className="bg-[#0A0A0A] border border-gray-800 p-3 md:p-5 rounded-xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 md:gap-4 cursor-default">
+                                            <X className="w-5 h-5 md:w-6 md:h-6 text-red-500 flex-shrink-0 mt-0.5 opacity-80" />
+                                            <p className="text-gray-400 text-[11px] md:text-[15px] leading-relaxed font-medium">{mito}</p>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -802,17 +802,17 @@ export default function App() {
                                 className="bg-[#0A0A0A] border border-safety/20 rounded-[24px] p-8 md:p-10 relative overflow-hidden shadow-[0_0_30px_rgba(255,87,34,0.05)]"
                             >
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-safety/5 blur-[80px] rounded-full pointer-events-none"></div>
-                                <h3 className="text-xl text-center text-white font-bold mb-8 flex items-center justify-center gap-3 tracking-tight"><CheckCircle2 className="w-6 h-6 text-safety" /> Al estilo GenIA Tech</h3>
-                                <div className="space-y-6 relative z-10">
+                                <h3 className="text-xl text-center text-white font-bold mb-8 flex items-center justify-center gap-3 tracking-tight"><CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-safety" /> Al estilo GenIA</h3>
+                                <div className="grid grid-cols-2 gap-3 md:gap-6 relative z-10">
                                     {[
-                                        "MVP funcional en semanas integrado con tu modelo.",
-                                        "Inteligencia y automatización al alcance de toda PYME/B2B.",
-                                        "Diseño centrado en el usuario, garantizando curva de uso cero.",
-                                        "Plataforma evolutiva: Crece al ritmo de tu escalabilidad."
+                                        "MVP funcional en semanas.",
+                                        "IA al alcance de toda PYME.",
+                                        "Curva de aprendizaje cero.",
+                                        "Software escala contigo."
                                     ].map((realidad, i) => (
-                                        <motion.div whileHover={{ scale: 1.02 }} key={i} className="bg-[#111111] border border-gray-800 p-5 rounded-xl flex items-start gap-4 hover:border-safety/30 transition-colors cursor-default">
-                                            <CheckCircle2 className="w-6 h-6 text-safety flex-shrink-0 mt-0.5" />
-                                            <p className="text-gray-200 text-[15px] leading-relaxed font-semibold">{realidad}</p>
+                                        <motion.div whileHover={{ scale: 1.02 }} key={i} className="bg-[#111111] border border-gray-800 p-3 md:p-5 rounded-xl flex flex-col sm:flex-row items-center sm:text-left text-center sm:items-start gap-2 md:gap-4 hover:border-safety/30 transition-colors cursor-default">
+                                            <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-safety flex-shrink-0 mt-0.5" />
+                                            <p className="text-gray-200 text-[11px] md:text-[15px] leading-relaxed font-semibold">{realidad}</p>
                                         </motion.div>
                                     ))}
                                 </div>
