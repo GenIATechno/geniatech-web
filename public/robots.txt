@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://geniatechno.com/sitemap.xml

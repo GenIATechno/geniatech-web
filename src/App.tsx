@@ -18,18 +18,32 @@ const WorkflowSteps = lazy(() => import('./components/WorkflowSteps').then(m => 
 
 const schemaMarkup = {
     "@context": "https://schema.org",
-    "@type": "Corporation",
-    "name": "GenIA Tech",
-    "url": "https://geniatechno.com",
-    "description": "Socio Operativo en Tecnología e IA para Empresas en Chile. Automatización de procesos, eficiencia operativa y software a medida.",
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Santiago",
-        "addressCountry": "CL"
+    "@type": "TechArticle",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://geniatechno.com/"
     },
-    "makesOffer": {
-        "@type": "Offer",
-        "priceCurrency": "CLP"
+    "headline": "GenIA Tech | Socio Operativo en Software e IA para Empresas en Chile",
+    "description": "Escalamos empresas B2B en Chile creando software a medida, aplicaciones de gestión interna, y automatización con Inteligencia Artificial.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "GenIA Tech SpA",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://geniatechno.com/favicon.png"
+        }
+    },
+    "provider": {
+        "@type": "LocalBusiness",
+        "name": "GenIA Tech",
+        "image": "https://geniatechno.com/tech_glow_bg.png",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Santiago",
+            "addressCountry": "CL",
+            "addressRegion": "Región Metropolitana"
+        },
+        "priceRange": "$$$"
     }
 };
 
