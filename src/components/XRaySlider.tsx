@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
 
 export const XRaySlider = () => {
     const [sliderPosition, setSliderPosition] = useState(50);

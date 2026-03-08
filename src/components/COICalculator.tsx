@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { AlertTriangle, TrendingDown, DollarSign, Users, Skull } from 'lucide-react';
 
 export const COICalculator = () => {

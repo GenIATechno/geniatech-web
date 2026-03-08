@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, CheckCircle2, ShieldAlert, Cpu, TrendingUp, Sparkles, Facebook, Instagram, Linkedin, Youtube, MessageSquare, Bot, BarChart3, ChevronDown, Zap } from 'lucide-react';
+import { Menu, X, ArrowRight, CheckCircle2, ShieldAlert, TrendingUp, Sparkles, Facebook, Instagram, Linkedin, Youtube, MessageSquare, Bot, BarChart3, ChevronDown } from 'lucide-react';
 
 import { ParticleBackground } from './components/ParticleBackground';
 
