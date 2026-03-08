@@ -466,6 +466,38 @@ export default function App() {
                         </button>
                     </div>
                 </div>
+
+                {/* Mobile Menu Dropdown */}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="md:hidden bg-[#0A0A0A] border-b border-[#1A1A1A] overflow-hidden"
+                        >
+                            <div className="px-4 py-6 space-y-4 flex flex-col">
+                                <a onClick={() => setIsMenuOpen(false)} href="#soluciones" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Impacto B2B</a>
+                                <a onClick={() => setIsMenuOpen(false)} href="#clientes" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Confianza</a>
+                                <Link onClick={() => setIsMenuOpen(false)} to="/casos" className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
+                                <a onClick={() => setIsMenuOpen(false)} href="#nosotros" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Socio Operativo</a>
+
+                                <div className="pt-4 border-t border-gray-800">
+                                    <button
+                                        onClick={() => {
+                                            setIsMenuOpen(false);
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                            setTimeout(() => setFocusForm(true), 300);
+                                        }}
+                                        className="w-full bg-safety text-white px-5 py-3 rounded-xl font-bold hover:bg-[#E64A19] transition-colors flex items-center justify-center gap-2 text-md shadow-[0_0_20px_rgba(255,87,34,0.3)]"
+                                    >
+                                        Mi Diagnóstico
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </nav>
 
             <AnimatePresence>
@@ -496,15 +528,15 @@ export default function App() {
                         <motion.div variants={fadeUpVariant} className="inline-flex items-center gap-2 bg-[#111111] border border-gray-800 text-gray-300 text-xs font-bold px-4 py-2 rounded-full mb-8 shadow-md">
                             <span className="w-2 h-2 rounded-full bg-safety animate-pulse"></span> B2B Tech Partner
                         </motion.div>
-                        <motion.h1 variants={fadeUpVariant} className="text-5xl lg:text-[4.5rem] font-extrabold leading-[1.05] mb-8 tracking-tight">
+                        <motion.h1 variants={fadeUpVariant} className="text-[2.75rem] leading-[1.1] md:text-5xl lg:text-[4.5rem] font-extrabold lg:leading-[1.05] mb-6 md:mb-8 tracking-tight">
                             <span className="block text-white">Tu Socio</span>
                             <span className="block text-white">Operativo en</span>
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-safety to-orange-400">Software e IA<br />en Chile</span>
                         </motion.h1>
-                        <motion.p variants={fadeUpVariant} className="text-lg md:text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+                        <motion.p variants={fadeUpVariant} className="text-base md:text-lg lg:text-xl text-gray-400 mb-8 md:mb-10 max-w-xl leading-relaxed">
                             Escalamos tu empresa B2B creando software a medida, apps de gestión interna, automatizaciones con IA y ecosistemas de ciberseguridad avanzados. Transformamos tus problemas en código escalable.
                         </motion.p>
-                        <motion.div variants={fadeUpVariant} className="flex flex-wrap gap-4 mb-2">
+                        <motion.div variants={fadeUpVariant} className="flex flex-wrap gap-3 md:gap-4 mb-2">
                             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2 text-sm font-semibold text-gray-300 bg-[#0A0A0A] border border-gray-800 px-4 py-2.5 rounded-full cursor-default"><CheckCircle2 className="w-4 h-4 text-safety" /> Gestión Rápida</motion.div>
                             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2 text-sm font-semibold text-gray-300 bg-[#0A0A0A] border border-gray-800 px-4 py-2.5 rounded-full cursor-default"><CheckCircle2 className="w-4 h-4 text-safety" /> Retorno Garantizado</motion.div>
                         </motion.div>
