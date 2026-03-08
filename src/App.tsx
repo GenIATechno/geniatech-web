@@ -14,6 +14,7 @@ const COICalculator = lazy(() => import('./components/COICalculator').then(m => 
 const AIGeneratorNiches = lazy(() => import('./components/AIGeneratorNiches').then(m => ({ default: m.AIGeneratorNiches })));
 const SystemStatus = lazy(() => import('./components/SystemStatus').then(m => ({ default: m.SystemStatus })));
 const WorkflowSteps = lazy(() => import('./components/WorkflowSteps').then(m => ({ default: m.WorkflowSteps })));
+import { Link } from 'react-router-dom';
 
 const schemaMarkup = {
     "@context": "https://schema.org",
@@ -439,7 +440,7 @@ export default function App() {
                         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="hidden md:flex items-center space-x-8 text-sm font-semibold">
                             <a href="#soluciones" className="flex items-center gap-1 cursor-pointer hover:text-safety transition-colors text-gray-300">Impacto B2B <ChevronDown className="w-4 h-4" /></a>
                             <a href="#clientes" className="flex items-center gap-1 cursor-pointer hover:text-safety transition-colors text-gray-300">Confianza <ChevronDown className="w-4 h-4" /></a>
-                            <a href="#procesos" className="text-gray-300 hover:text-safety transition-colors">Flujo de Trabajo</a>
+                            <Link to="/casos" className="text-gray-300 hover:text-safety transition-colors font-bold text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
                             <a href="#nosotros" className="text-gray-300 hover:text-safety transition-colors">Socio Operativo</a>
                         </motion.div>
 
