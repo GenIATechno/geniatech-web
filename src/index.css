@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
+}
+
+.gradient-orange {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-safety to-orange-400;
+}
