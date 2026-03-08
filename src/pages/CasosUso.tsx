@@ -11,7 +11,7 @@ const cases = [
         client: "Inout Seguridad",
         industry: "Seguridad Privada y Operaciones",
         problem: "Alta fricción en la validación de identidades, turnos de guardias gestionados manualmente, y nula trazabilidad en vivo de rondas e incidentes a lo largo de Chile.",
-        solution: "Desarrollo de ecosistema B2B: App Móvil para guardias (React Native) con validación por RUT, y un Dashboard Operativo (React) en tiempo real para la gerencia, conectado mediante Supabase y flujos automatizados en n8n.",
+        solution: "Desarrollo de un ecosistema operativo integral: Creamos una aplicación de campo intuitiva para que los guardias validen su identidad sin fricción, conectada un centro de mando en vivo para la gerencia. Ahora toda la información operativa fluye y alerta de forma automática, sin depender de reportes en papel.",
         results: [
             "Tiempo de check-in reducido en un 85%.",
             "Trazabilidad y GPS en vivo del 100% de la flota.",
@@ -25,7 +25,7 @@ const cases = [
         client: "Empresa de Logística Nacional",
         industry: "Distribución y Transporte",
         problem: "Pérdida de prospectos B2B (38% de 'Drop') por lentitud en la respuesta manual y presupuestación basada en Excel aislado.",
-        solution: "Implementación de cotizador interactivo con IA y creación de flujos de webhook directos (n8n -> Telegram -> Google Sheets), alertando a los key account managers en milisegundos.",
+        solution: "Implementación de un cotizador inteligente acoplado a un embudo de ventas automático. En cuanto un prospecto solicita un presupuesto, el equipo comercial recibe alertas instantáneas con toda la información clave ya procesada, eliminando tiempos muertos y el uso de un sinfín de hojas de cálculo aisladas.",
         results: [
             "Tasa de respuesta de leads bajó de 4 horas a < 5 minutos.",
             "Aumento en la retención de clientes B2B.",
