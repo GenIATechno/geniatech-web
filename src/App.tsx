@@ -151,7 +151,7 @@ const LeadForm = () => {
                             <div className="space-y-4">
                                 <label className="block text-sm font-medium text-gray-400 mb-3">¿En qué sector o área principal operas?</label>
                                 <div className="grid grid-cols-2 gap-3">
-                                    {['Minería e Industria', 'Agricultura y Forestal', 'Logística y Transporte', 'Retail y Comercio', 'Servicios Profesionales'].map(opt => (
+                                    {['Seguridad Privada', 'Minería e Industria', 'Agricultura y Forestal', 'Logística y Transporte', 'Retail y Comercio', 'Servicios Profesionales'].map(opt => (
                                         <motion.button
                                             whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 87, 34, 0.05)" }} whileTap={{ scale: 0.98 }}
                                             key={opt} onClick={() => { updateForm('area', opt); handleNext(); }}
@@ -163,7 +163,7 @@ const LeadForm = () => {
                                     <motion.button
                                         whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                                         onClick={() => updateForm('area', 'Otra')}
-                                        className={`p-3.5 rounded-xl border text-sm font-semibold text-left transition-all ${formData.area === 'Otra' ? 'border-safety bg-[#111] text-white' : 'border-gray-800 hover:border-gray-600 bg-[#111111] text-gray-300'}`}
+                                        className={`p-3.5 rounded-xl border col-span-2 text-sm font-semibold text-center transition-all ${formData.area === 'Otra' ? 'border-safety bg-[#111] text-white' : 'border-gray-800 hover:border-gray-600 bg-[#111111] text-gray-300'}`}
                                     >
                                         Otra área...
                                     </motion.button>
@@ -429,7 +429,7 @@ export default function App() {
 
             {/* NAVBAR */}
             <nav className="fixed w-full z-50 bg-[#000000]/80 backdrop-blur-xl border-b border-[#1A1A1A] top-[34px]">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
                         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="flex items-center gap-3">
                             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-[26px] font-black tracking-tighter text-white hover:opacity-80 transition-all active:scale-95 group">
@@ -515,7 +515,7 @@ export default function App() {
 
             <main className="pt-24 md:pt-[110px]">
                 {/* HERO SECTION */}
-                <section id="contacto" className="relative px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-8 lg:pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8 overflow-hidden min-h-[85vh]">
+                <section id="contacto" className="relative px-4 sm:px-6 lg:px-8 max-w-8xl mx-auto pb-8 lg:pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8 overflow-hidden min-h-[85vh]">
                     <ParticleBackground />
                     <div className="absolute top-1/4 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-safety/10 via-[#000000] to-[rgba(0,0,0,0.8)] blur-[100px] z-0 hidden lg:block"></div>
 
@@ -563,7 +563,7 @@ export default function App() {
                     transition={{ duration: 1 }}
                     className="pb-20 pt-10 border-y border-gray-900 border-opacity-70 bg-[#020202] relative mt-4 overflow-hidden"
                 >
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mb-8">
+                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mb-8">
                         <h2 className="text-sm font-bold text-gray-500 uppercase tracking-widest text-center">Impulsando las operaciones de empresas que lideran sus industrias</h2>
                     </div>
 
@@ -601,7 +601,7 @@ export default function App() {
 
                 {/* THE 3 CORE FOCUS CARDS + HUGE STATS */}
                 <section id="soluciones" className="py-24 bg-[#000000] overflow-hidden">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
 
                         <motion.div
                             variants={staggerContainer}
@@ -693,7 +693,7 @@ export default function App() {
 
                 {/* ROI CALCULATOR SECTION */}
                 <section className="bg-[#000000] py-20 relative border-t border-gray-900">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -716,7 +716,7 @@ export default function App() {
 
                 {/* SOCIO OPERATIVO (CEO SECTION) */}
                 <section className="bg-[#050505] py-24 border-y border-gray-900 overflow-hidden" id="nosotros">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-col md:flex-row items-center gap-16">
                             <motion.div
                                 initial={{ opacity: 0, x: -40 }}
@@ -760,7 +760,7 @@ export default function App() {
 
                 {/* MITOS VS REALIDAD */}
                 <section className="py-24 bg-[#000000] overflow-hidden" id="mitos">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -840,7 +840,7 @@ export default function App() {
 
             {/* FOOTER MODERNIZADO */}
             <footer className="bg-[#0A0A0A] border-t border-gray-900 pt-16 pb-8">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16 border-b border-gray-900 pb-16">
                         <div className="col-span-2 lg:col-span-2 space-y-6">

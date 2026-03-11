@@ -52,7 +52,7 @@ export const CasosUso = () => {
 
             {/* Simple Navbar */}
             <nav className="fixed w-full z-50 transition-all duration-300 bg-[#000000]/80 backdrop-blur-md border-b border-gray-900 shadow-xl">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
                         <Link to="/" className="flex items-center gap-2 group">
                             <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-safety transition-colors" />
@@ -66,7 +66,7 @@ export const CasosUso = () => {
                 </div>
             </nav>
 
-            <main className="pt-32 pb-24 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <main className="pt-32 pb-24 relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

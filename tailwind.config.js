@@ -13,6 +13,9 @@ export default {
             },
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            maxWidth: {
+                '8xl': '1440px',
             }
         },
     },
