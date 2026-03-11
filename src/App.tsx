@@ -573,7 +573,7 @@ export default function App() {
                             {[...Array(2)].map((_, i) => (
                                 <div key={i} className="flex gap-4">
                                     {[
-                                        { name: 'IANSA', font: 'font-serif tracking-widest' },
+                                        // { name: 'IANSA', font: 'font-serif tracking-widest' },
                                         { name: 'Inout Seguridad', font: 'font-sans font-black tracking-tight uppercase' },
                                         { name: 'AgroPrime', font: 'font-sans font-medium tracking-wide' },
                                         { name: 'FluxCorp', font: 'font-mono font-bold' },
