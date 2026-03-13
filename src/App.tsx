@@ -18,33 +18,66 @@ import { Link } from 'react-router-dom';
 
 const schemaMarkup = {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://geniatechno.com/"
+    "@type": "ProfessionalService",
+    "@id": "https://geniatechno.com/#organization",
+    "name": "GenIA Tech SpA",
+    "alternateName": "GenIA Tech",
+    "url": "https://geniatechno.com/",
+    "logo": "https://geniatechno.com/favicon.png",
+    "image": "https://geniatechno.com/tech_glow_bg.png",
+    "description": "Empresa de automatización empresarial, software a medida e inteligencia artificial B2B en Chile. Resolvemos cuellos de botella operativos con tecnología deployada en semanas.",
+    "slogan": "Inteligencia Operativa. Escalabilidad Absoluta.",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santiago",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
     },
-    "headline": "GenIA Tech | Socio Operativo en Software e IA para Empresas en Chile",
-    "description": "Escalamos empresas B2B en Chile creando software a medida, aplicaciones de gestión interna, y automatización con Inteligencia Artificial.",
-    "publisher": {
-        "@type": "Organization",
-        "name": "GenIA Tech SpA",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://geniatechno.com/favicon.png"
-        }
+    "areaServed": {
+        "@type": "Country",
+        "name": "Chile"
     },
-    "provider": {
-        "@type": "LocalBusiness",
-        "name": "GenIA Tech",
-        "image": "https://geniatechno.com/tech_glow_bg.png",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Santiago",
-            "addressCountry": "CL",
-            "addressRegion": "Región Metropolitana"
-        },
-        "priceRange": "$$$"
-    }
+    "priceRange": "$$$",
+    "knowsAbout": [
+        "Automatización Empresarial",
+        "Software a Medida",
+        "Inteligencia Artificial B2B",
+        "Sistemas de Supervisión Operativa",
+        "Automatización de Procesos"
+    ],
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios GenIA Tech",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Automatización Empresarial Chile",
+                    "url": "https://geniatechno.com/servicios/automatizacion-empresarial"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Software a Medida para Empresas Chile",
+                    "url": "https://geniatechno.com/servicios/software-a-medida"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Inteligencia Artificial B2B Chile",
+                    "url": "https://geniatechno.com/servicios/inteligencia-artificial-b2b"
+                }
+            }
+        ]
+    },
+    "sameAs": [
+        "https://www.linkedin.com/company/geniatech"
+    ]
 };
 
 const ChileFlag = () => (
@@ -399,9 +432,10 @@ export default function App() {
                 <SystemStatus />
             </Suspense>
             <Helmet>
-                <title>GenIA Tech | Socio Operativo en Tecnología e IA para Empresas en Chile</title>
-                <meta name="description" content="Escalamos tu empresa B2B con tecnología ilimitada. Implementamos IA, automatización y gestión interna a medida en Chile. Ahorra tiempo y dinero con GenIA Tech." />
-                <meta name="keywords" content="Automatización de procesos Chile, Socio tecnológico B2B, Inteligencia Artificial para empresas, Eficiencia operativa, Software de gestión interna" />
+                <title>GenIA Tech | Automatización Empresarial, Software a Medida e IA B2B en Chile</title>
+                <meta name="description" content="Automatización empresarial, software a medida e inteligencia artificial B2B para empresas en Chile. Resolvemos problemas operativos críticos con soluciones deployadas en semanas. Santiago, Chile." />
+                <meta name="keywords" content="automatización empresarial Chile, software a medida empresas Chile, inteligencia artificial B2B Chile, sistema supervisión operativa Santiago, automatización de procesos B2B" />
+                <link rel="canonical" href="https://geniatechno.com/" />
                 <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
             </Helmet>
 
@@ -529,12 +563,12 @@ export default function App() {
                             <span className="w-2 h-2 rounded-full bg-safety animate-pulse"></span> B2B Tech Partner
                         </motion.div>
                         <motion.h1 variants={fadeUpVariant} className="text-[2.75rem] leading-[1.1] md:text-5xl lg:text-[4.5rem] font-extrabold lg:leading-[1.05] mb-6 md:mb-8 tracking-tight">
-                            <span className="block text-white">Tu Socio</span>
-                            <span className="block text-white">Operativo en</span>
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-safety to-orange-400">Software e IA<br />en Chile</span>
+                            <span className="block text-white">Automatización</span>
+                            <span className="block text-white">Empresarial y</span>
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-safety to-orange-400">Software a Medida<br />en Chile</span>
                         </motion.h1>
                         <motion.p variants={fadeUpVariant} className="text-base md:text-lg lg:text-xl text-gray-400 mb-8 md:mb-10 max-w-xl leading-relaxed">
-                            Escalamos tu empresa B2B creando software a medida, apps de gestión interna, automatizaciones con IA y ecosistemas de ciberseguridad avanzados. Transformamos tus problemas en código escalable.
+                            Resolvemos cuellos de botella operativos en empresas B2B con software a medida, inteligencia artificial y automatización de procesos. Soluciones deployadas en semanas, no en meses.
                         </motion.p>
                         <motion.div variants={fadeUpVariant} className="flex flex-wrap gap-3 md:gap-4 mb-2">
                             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2 text-sm font-semibold text-gray-300 bg-[#0A0A0A] border border-gray-800 px-4 py-2.5 rounded-full cursor-default"><CheckCircle2 className="w-4 h-4 text-safety" /> Gestión Rápida</motion.div>
@@ -602,6 +636,14 @@ export default function App() {
                 {/* THE 3 CORE FOCUS CARDS + HUGE STATS */}
                 <section id="soluciones" className="py-24 bg-[#000000] overflow-hidden">
                     <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-14">
+                            <h2 className="text-3xl md:text-[2.5rem] font-extrabold text-white tracking-tight leading-tight">
+                                Soluciones de <span className="bg-clip-text text-transparent bg-gradient-to-r from-safety to-orange-400">Automatización e IA</span> para Empresas en Chile
+                            </h2>
+                            <p className="text-gray-400 mt-4 text-base md:text-lg max-w-2xl mx-auto">
+                                Software a medida, inteligencia artificial B2B y sistemas de supervisión operativa para industrias que no pueden permitirse ineficiencia.
+                            </p>
+                        </div>
 
                         <motion.div
                             variants={staggerContainer}
@@ -746,7 +788,7 @@ export default function App() {
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 className="w-full md:w-2/3"
                             >
-                                <h2 className="text-3xl md:text-[2.5rem] font-bold mb-8 leading-tight tracking-tight">Uniendo estrategia de negocio con tecnología de punta</h2>
+                                <h2 className="text-3xl md:text-[2.5rem] font-bold mb-8 leading-tight tracking-tight">Automatización empresarial con IA para empresas B2B en Chile</h2>
                                 <div className="p-8 md:p-10 border border-gray-800/80 rounded-[24px] bg-[#0A0A0A] relative shadow-2xl">
                                     <span className="absolute -top-3.5 left-8 bg-safety text-white text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">Nuestra Filosofía</span>
                                     <p className="text-xl md:text-2xl text-gray-400 font-medium italic leading-relaxed">
@@ -842,7 +884,7 @@ export default function App() {
             <footer className="bg-[#0A0A0A] border-t border-gray-900 pt-16 pb-8">
                 <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16 border-b border-gray-900 pb-16">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 mb-16 border-b border-gray-900 pb-16">
                         <div className="col-span-2 lg:col-span-2 space-y-6">
                             <div className="flex items-center gap-3">
                                 <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-[26px] font-black tracking-tighter text-white hover:opacity-80 transition-all active:scale-95 group">
@@ -876,6 +918,16 @@ export default function App() {
                                 <li><a href="#expertis" className="hover:text-white transition-colors">Verticales</a></li>
                                 <li><a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
+                            </ul>
+                        </div>
+
+                        <div className="col-span-1">
+                            <h4 className="font-bold text-xs uppercase tracking-widest text-gray-500 mb-6">Servicios</h4>
+                            <ul className="space-y-4 text-sm font-semibold text-gray-300">
+                                <li><Link to="/servicios/automatizacion-empresarial" className="hover:text-white transition-colors">Automatización</Link></li>
+                                <li><Link to="/servicios/software-a-medida" className="hover:text-white transition-colors">Software a Medida</Link></li>
+                                <li><Link to="/servicios/inteligencia-artificial-b2b" className="hover:text-white transition-colors">IA Empresarial</Link></li>
+                                <li><Link to="/casos" className="hover:text-white transition-colors">Casos de Éxito</Link></li>
                             </ul>
                         </div>
 

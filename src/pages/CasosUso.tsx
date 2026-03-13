@@ -46,6 +46,7 @@ export const CasosUso = () => {
             <Helmet>
                 <title>Casos de Éxito y Uso | GenIA Tech</title>
                 <meta name="description" content="Descubre cómo GenIA Tech escala empresas B2B en Chile resolviendo problemas críticos operativos con software a medida e IA." />
+                <link rel="canonical" href="https://geniatechno.com/casos" />
             </Helmet>
 
             <ParticleBackground />
