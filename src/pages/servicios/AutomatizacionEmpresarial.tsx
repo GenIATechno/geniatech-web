@@ -103,9 +103,9 @@ export const AutomatizacionEmpresarial = () => {
                         Eliminamos las tareas manuales que le cuestan tiempo y dinero a tu empresa. Construimos flujos automáticos inteligentes que integran tus sistemas actuales y operan 24/7 sin fricción humana.
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/#contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
+                        <Link to="/contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
                             Solicitar Diagnóstico Gratuito <ArrowRight className="w-5 h-5" />
-                        </a>
+                        </Link>
                         <Link to="/casos" className="inline-flex items-center gap-2 border border-gray-700 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transition-all hover:border-gray-500">
                             Ver Casos de Éxito
                         </Link>
@@ -163,9 +163,9 @@ export const AutomatizacionEmpresarial = () => {
                         ¿Cuánto tiempo pierde tu equipo en tareas manuales hoy?
                     </h2>
                     <p className="text-gray-400 mb-8 max-w-xl mx-auto">Hacemos una auditoría de tus procesos actuales sin costo. En 48 horas te entregamos un mapa de automatización con ROI estimado.</p>
-                    <a href="/#contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
+                    <Link to="/contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
                         Iniciar Diagnóstico Operativo <ArrowRight className="w-5 h-5" />
-                    </a>
+                    </Link>
                 </div>
             </main>
         </div>

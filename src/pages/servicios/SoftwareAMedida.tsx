@@ -106,9 +106,9 @@ export const SoftwareAMedida = () => {
                         El software genérico no fue diseñado para tu operación. Construimos la plataforma exacta que tu empresa necesita: desde apps de campo hasta centros de mando para la gerencia, con código propio y escalable.
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/#contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
+                        <Link to="/contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
                             Cotizar mi Proyecto <ArrowRight className="w-5 h-5" />
-                        </a>
+                        </Link>
                         <Link to="/casos" className="inline-flex items-center gap-2 border border-gray-700 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transition-all hover:border-gray-500">
                             Ver Casos de Éxito
                         </Link>
@@ -161,9 +161,9 @@ export const SoftwareAMedida = () => {
                         ¿Cuánto cuesta desarrollar software a medida en Chile?
                     </h2>
                     <p className="text-gray-400 mb-8 max-w-xl mx-auto">Proyectos desde $3.5M CLP con MVP funcional en 4–6 semanas. Cuéntanos tu desafío y te entregamos una propuesta técnica sin compromiso.</p>
-                    <a href="/#contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
+                    <Link to="/contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
                         Solicitar Propuesta Técnica <ArrowRight className="w-5 h-5" />
-                    </a>
+                    </Link>
                 </div>
             </main>
         </div>

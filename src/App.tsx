@@ -393,6 +393,8 @@ export default function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [focusForm, setFocusForm] = useState(false);
     const [isAtBottom, setIsAtBottom] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
+    const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
     useEffect(() => {
         const handleOpenForm = () => {
@@ -472,27 +474,50 @@ export default function App() {
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="hidden md:flex items-center space-x-8 text-sm font-semibold">
-                            <a href="#soluciones" className="flex items-center gap-1 cursor-pointer hover:text-safety transition-colors text-gray-300">Impacto B2B <ChevronDown className="w-4 h-4" /></a>
-                            <a href="#clientes" className="flex items-center gap-1 cursor-pointer hover:text-safety transition-colors text-gray-300">Confianza <ChevronDown className="w-4 h-4" /></a>
-                            <Link to="/casos" className="text-gray-300 hover:text-safety transition-colors font-bold text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
-                            <a href="#nosotros" className="text-gray-300 hover:text-safety transition-colors">Socio Operativo</a>
+                            {/* Dropdown Servicios */}
+                            <div className="relative" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
+                                <button className={`flex items-center gap-1 cursor-pointer transition-colors ${isServicesOpen ? 'text-safety' : 'text-gray-300 hover:text-safety'}`}>
+                                    Servicios <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                <AnimatePresence>
+                                    {isServicesOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 8 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute top-full left-0 mt-3 w-64 bg-[#0A0A0A] border border-gray-800 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden z-50"
+                                        >
+                                            <Link to="/servicios/automatizacion-empresarial" onClick={() => setIsServicesOpen(false)} className="flex items-center gap-3 px-5 py-4 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">
+                                                Automatización Empresarial
+                                            </Link>
+                                            <Link to="/servicios/software-a-medida" onClick={() => setIsServicesOpen(false)} className="flex items-center gap-3 px-5 py-4 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">
+                                                Software a Medida
+                                            </Link>
+                                            <Link to="/servicios/inteligencia-artificial-b2b" onClick={() => setIsServicesOpen(false)} className="flex items-center gap-3 px-5 py-4 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold">
+                                                Inteligencia Artificial B2B
+                                            </Link>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                            <Link to="/casos" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
+                            <Link to="/nosotros" className="text-gray-300 hover:text-safety transition-colors">Nosotros</Link>
+                            <Link to="/blog" className="text-gray-300 hover:text-safety transition-colors">Blog</Link>
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="hidden md:flex items-center gap-4">
                             <div className="flex items-center gap-2 bg-[#111111] border border-gray-800 px-3 py-1.5 rounded-full text-xs font-semibold mr-2 cursor-pointer hover:bg-gray-800 transition-colors">
                                 <ChileFlag /> Chile <ChevronDown className="w-3 h-3 text-gray-400" />
                             </div>
-                            <motion.button
-                                onClick={() => {
-                                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                                    setTimeout(() => setFocusForm(true), 300);
-                                }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-safety text-white px-5 py-2.5 rounded-full font-bold hover:bg-[#E64A19] transition-colors flex items-center gap-2 text-sm shadow-[0_0_20px_rgba(255,87,34,0.3)]"
-                            >
-                                Mi Diagnóstico
-                            </motion.button>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <Link
+                                    to="/contacto"
+                                    className="bg-safety text-white px-5 py-2.5 rounded-full font-bold hover:bg-[#E64A19] transition-colors flex items-center gap-2 text-sm shadow-[0_0_20px_rgba(255,87,34,0.3)]"
+                                >
+                                    Mi Diagnóstico
+                                </Link>
+                            </motion.div>
                         </motion.div>
 
                         <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-gray-300 hover:text-white p-2">
@@ -511,22 +536,42 @@ export default function App() {
                             className="md:hidden bg-[#0A0A0A] border-b border-[#1A1A1A] overflow-hidden"
                         >
                             <div className="px-4 py-6 space-y-4 flex flex-col">
-                                <a onClick={() => setIsMenuOpen(false)} href="#soluciones" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Impacto B2B</a>
-                                <a onClick={() => setIsMenuOpen(false)} href="#clientes" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Confianza</a>
+                                {/* Servicios expandible */}
+                                <div>
+                                    <button
+                                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                                        className="w-full flex items-center justify-between text-gray-300 font-semibold text-lg hover:text-safety transition-colors"
+                                    >
+                                        Servicios
+                                        <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180 text-safety' : ''}`} />
+                                    </button>
+                                    <AnimatePresence>
+                                        {isMobileServicesOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                className="pl-4 mt-3 space-y-3 border-l-2 border-safety/30 overflow-hidden"
+                                            >
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/servicios/automatizacion-empresarial" className="block text-gray-400 font-medium hover:text-white transition-colors">Automatización Empresarial</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/servicios/software-a-medida" className="block text-gray-400 font-medium hover:text-white transition-colors">Software a Medida</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/servicios/inteligencia-artificial-b2b" className="block text-gray-400 font-medium hover:text-white transition-colors">Inteligencia Artificial B2B</Link>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                                 <Link onClick={() => setIsMenuOpen(false)} to="/casos" className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
-                                <a onClick={() => setIsMenuOpen(false)} href="#nosotros" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Socio Operativo</a>
+                                <Link onClick={() => setIsMenuOpen(false)} to="/nosotros" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Nosotros</Link>
+                                <Link onClick={() => setIsMenuOpen(false)} to="/blog" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Blog</Link>
 
                                 <div className="pt-4 border-t border-gray-800">
-                                    <button
-                                        onClick={() => {
-                                            setIsMenuOpen(false);
-                                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                                            setTimeout(() => setFocusForm(true), 300);
-                                        }}
+                                    <Link
+                                        to="/contacto"
+                                        onClick={() => setIsMenuOpen(false)}
                                         className="w-full bg-safety text-white px-5 py-3 rounded-xl font-bold hover:bg-[#E64A19] transition-colors flex items-center justify-center gap-2 text-md shadow-[0_0_20px_rgba(255,87,34,0.3)]"
                                     >
                                         Mi Diagnóstico
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </motion.div>
@@ -915,9 +960,9 @@ export default function App() {
                         <div className="col-span-1">
                             <h4 className="font-bold text-xs uppercase tracking-widest text-gray-500 mb-6">Empresa</h4>
                             <ul className="space-y-4 text-sm font-semibold text-gray-300">
-                                <li><a href="#expertis" className="hover:text-white transition-colors">Verticales</a></li>
-                                <li><a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
+                                <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
+                                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                                <li><Link to="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
                             </ul>
                         </div>
 

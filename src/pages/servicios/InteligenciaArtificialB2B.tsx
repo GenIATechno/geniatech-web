@@ -104,9 +104,9 @@ export const InteligenciaArtificialB2B = () => {
                         La IA no es solo para grandes corporaciones. Implementamos inteligencia artificial en empresas B2B chilenas de todos los tamaños: desde agentes autónomos hasta analítica predictiva integrada en tu operación diaria.
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/#contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
+                        <Link to="/contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
                             Evaluar mi Caso de IA <ArrowRight className="w-5 h-5" />
-                        </a>
+                        </Link>
                         <Link to="/casos" className="inline-flex items-center gap-2 border border-gray-700 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transition-all hover:border-gray-500">
                             Ver Casos de Éxito
                         </Link>
@@ -164,9 +164,9 @@ export const InteligenciaArtificialB2B = () => {
                         ¿Cómo puede la IA impactar tu operación?
                     </h2>
                     <p className="text-gray-400 mb-8 max-w-xl mx-auto">Analizamos tu operación actual y te mostramos exactamente dónde la inteligencia artificial puede generar retorno medible en tu empresa.</p>
-                    <a href="/#contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
+                    <Link to="/contacto" className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_40px_rgba(255,87,34,0.5)] transition-all hover:-translate-y-1">
                         Solicitar Análisis de IA <ArrowRight className="w-5 h-5" />
-                    </a>
+                    </Link>
                 </div>
             </main>
         </div>
