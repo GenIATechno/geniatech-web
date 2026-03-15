@@ -814,7 +814,7 @@ export default function App() {
                             >
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-safety rounded-[32px] rotate-3 scale-105 opacity-20 blur-sm"></div>
-                                    <img src="/martin_ceo.png" alt="Martín Díaz, CEO GenIA Tech" className="rounded-[32px] relative z-10 w-72 h-auto shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-gray-800" />
+                                    <img src="/martin_ceo.png" alt="Martín Díaz, CEO GenIA Tech" loading="lazy" decoding="async" className="rounded-[32px] relative z-10 w-72 h-auto shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-gray-800" />
                                     <motion.div
                                         initial={{ y: 20, opacity: 0 }}
                                         whileInView={{ y: 0, opacity: 1 }}
@@ -997,7 +997,7 @@ export default function App() {
                                 <h4 className="font-bold text-[11px] uppercase tracking-widest text-gray-500 mb-6">Hecho con ♥ en Chile</h4>
                                 <div className="flex items-center justify-center group cursor-default">
                                     <div className="h-32 w-auto opacity-80 group-hover:opacity-100 transition-all group-hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_15px_rgba(255,87,34,0.4)]">
-                                        <img src="/mapa_chile.png" alt="Mapa de Chile" className="h-full w-auto object-contain" />
+                                        <img src="/mapa_chile.png" alt="Mapa de Chile" loading="lazy" decoding="async" className="h-full w-auto object-contain" />
                                     </div>
                                 </div>
                             </div>

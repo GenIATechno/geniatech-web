@@ -95,6 +95,8 @@ export const Nosotros = () => {
                                 <img
                                     src="/martin_ceo.png"
                                     alt="Martín Díaz, CEO y Fundador de GenIA Tech"
+                                    loading="lazy"
+                                    decoding="async"
                                     className="rounded-[32px] relative z-10 w-72 h-auto shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-gray-800"
                                 />
                                 <motion.div
