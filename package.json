@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "postbuild": "react-snap",
+        "postbuild": "node -e \"if(process.env.VERCEL !== '1') { require('child_process').execSync('react-snap', {stdio: 'inherit'}) }\"",
         "preview": "vite preview"
     },
     "dependencies": {
