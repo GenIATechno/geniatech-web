@@ -395,6 +395,8 @@ export default function App() {
     const [isAtBottom, setIsAtBottom] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+    const [isIndustriasOpen, setIsIndustriasOpen] = useState(false);
+    const [isMobileIndustriasOpen, setIsMobileIndustriasOpen] = useState(false);
 
     useEffect(() => {
         const handleOpenForm = () => {
@@ -501,6 +503,34 @@ export default function App() {
                                     )}
                                 </AnimatePresence>
                             </div>
+                            {/* Dropdown Industrias */}
+                            <div className="relative" onMouseEnter={() => setIsIndustriasOpen(true)} onMouseLeave={() => setIsIndustriasOpen(false)}>
+                                <button className={`flex items-center gap-1 cursor-pointer transition-colors ${isIndustriasOpen ? 'text-safety' : 'text-gray-300 hover:text-safety'}`}>
+                                    Industrias <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isIndustriasOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                <AnimatePresence>
+                                    {isIndustriasOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 8 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute top-full left-0 mt-3 w-72 bg-[#0A0A0A] border border-gray-800 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden z-50"
+                                        >
+                                            <Link to="/industrias/inmobiliarias" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Inmobiliarias</Link>
+                                            <Link to="/industrias/seguridad-privada" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Seguridad Privada</Link>
+                                            <Link to="/industrias/agroindustria" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Agroindustria</Link>
+                                            <Link to="/industrias/construccion" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Construcción</Link>
+                                            <Link to="/industrias/mineria" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Minería</Link>
+                                            <Link to="/industrias/logistica-transporte" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Logística y Transporte</Link>
+                                            <Link to="/industrias/clinicas-salud" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Clínicas y Salud</Link>
+                                            <Link to="/industrias/retail-comercio" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">Retail y Comercio</Link>
+                                            <Link to="/industrias/otec-otic" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold border-b border-gray-900">OTEC / OTIC</Link>
+                                            <Link to="/industrias/servicios-profesionales" onClick={() => setIsIndustriasOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-gray-300 hover:text-white hover:bg-[#111] transition-colors text-sm font-semibold">Servicios Profesionales</Link>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                             <Link to="/casos" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
                             <Link to="/nosotros" className="text-gray-300 hover:text-safety transition-colors">Nosotros</Link>
                             <Link to="/blog" className="text-gray-300 hover:text-safety transition-colors">Blog</Link>
@@ -556,6 +586,37 @@ export default function App() {
                                                 <Link onClick={() => setIsMenuOpen(false)} to="/servicios/automatizacion-empresarial" className="block text-gray-400 font-medium hover:text-white transition-colors">Automatización Empresarial</Link>
                                                 <Link onClick={() => setIsMenuOpen(false)} to="/servicios/software-a-medida" className="block text-gray-400 font-medium hover:text-white transition-colors">Software a Medida</Link>
                                                 <Link onClick={() => setIsMenuOpen(false)} to="/servicios/inteligencia-artificial-b2b" className="block text-gray-400 font-medium hover:text-white transition-colors">Inteligencia Artificial B2B</Link>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                                {/* Industrias expandible */}
+                                <div>
+                                    <button
+                                        onClick={() => setIsMobileIndustriasOpen(!isMobileIndustriasOpen)}
+                                        className="w-full flex items-center justify-between text-gray-300 font-semibold text-lg hover:text-safety transition-colors"
+                                    >
+                                        Industrias
+                                        <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileIndustriasOpen ? 'rotate-180 text-safety' : ''}`} />
+                                    </button>
+                                    <AnimatePresence>
+                                        {isMobileIndustriasOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                className="pl-4 mt-3 space-y-3 border-l-2 border-safety/30 overflow-hidden"
+                                            >
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/inmobiliarias" className="block text-gray-400 font-medium hover:text-white transition-colors">Inmobiliarias</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/seguridad-privada" className="block text-gray-400 font-medium hover:text-white transition-colors">Seguridad Privada</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/agroindustria" className="block text-gray-400 font-medium hover:text-white transition-colors">Agroindustria</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/construccion" className="block text-gray-400 font-medium hover:text-white transition-colors">Construcción</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/mineria" className="block text-gray-400 font-medium hover:text-white transition-colors">Minería</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/logistica-transporte" className="block text-gray-400 font-medium hover:text-white transition-colors">Logística y Transporte</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/clinicas-salud" className="block text-gray-400 font-medium hover:text-white transition-colors">Clínicas y Salud</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/retail-comercio" className="block text-gray-400 font-medium hover:text-white transition-colors">Retail y Comercio</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/otec-otic" className="block text-gray-400 font-medium hover:text-white transition-colors">OTEC / OTIC</Link>
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/industrias/servicios-profesionales" className="block text-gray-400 font-medium hover:text-white transition-colors">Servicios Profesionales</Link>
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
@@ -929,7 +990,7 @@ export default function App() {
             <footer className="bg-[#0A0A0A] border-t border-gray-900 pt-16 pb-8">
                 <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 mb-16 border-b border-gray-900 pb-16">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 mb-16 border-b border-gray-900 pb-16">
                         <div className="col-span-2 lg:col-span-2 space-y-6">
                             <div className="flex items-center gap-3">
                                 <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-[26px] font-black tracking-tighter text-white hover:opacity-80 transition-all active:scale-95 group">
@@ -973,6 +1034,22 @@ export default function App() {
                                 <li><Link to="/servicios/software-a-medida" className="hover:text-white transition-colors">Software a Medida</Link></li>
                                 <li><Link to="/servicios/inteligencia-artificial-b2b" className="hover:text-white transition-colors">IA Empresarial</Link></li>
                                 <li><Link to="/casos" className="hover:text-white transition-colors">Casos de Éxito</Link></li>
+                            </ul>
+                        </div>
+
+                        <div className="col-span-2 lg:col-span-1">
+                            <h4 className="font-bold text-xs uppercase tracking-widest text-gray-500 mb-6">Industrias</h4>
+                            <ul className="space-y-3 text-sm font-semibold text-gray-300">
+                                <li><Link to="/industrias/inmobiliarias" className="hover:text-white transition-colors">Inmobiliarias</Link></li>
+                                <li><Link to="/industrias/seguridad-privada" className="hover:text-white transition-colors">Seguridad Privada</Link></li>
+                                <li><Link to="/industrias/agroindustria" className="hover:text-white transition-colors">Agroindustria</Link></li>
+                                <li><Link to="/industrias/construccion" className="hover:text-white transition-colors">Construcción</Link></li>
+                                <li><Link to="/industrias/mineria" className="hover:text-white transition-colors">Minería</Link></li>
+                                <li><Link to="/industrias/logistica-transporte" className="hover:text-white transition-colors">Logística</Link></li>
+                                <li><Link to="/industrias/clinicas-salud" className="hover:text-white transition-colors">Clínicas y Salud</Link></li>
+                                <li><Link to="/industrias/retail-comercio" className="hover:text-white transition-colors">Retail y Comercio</Link></li>
+                                <li><Link to="/industrias/otec-otic" className="hover:text-white transition-colors">OTEC / OTIC</Link></li>
+                                <li><Link to="/industrias/servicios-profesionales" className="hover:text-white transition-colors">Servicios Prof.</Link></li>
                             </ul>
                         </div>
 
