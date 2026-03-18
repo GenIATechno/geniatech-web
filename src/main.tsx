@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import ReactDOM from 'react-dom/client'
+import { hydrateRoot, createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App.tsx'
@@ -26,7 +26,9 @@ const RetailComercio = lazy(() => import('./pages/industrias/RetailComercio.tsx'
 const OtecOtic = lazy(() => import('./pages/industrias/OtecOtic.tsx').then(m => ({ default: m.OtecOtic })))
 const ServiciosProfesionales = lazy(() => import('./pages/industrias/ServiciosProfesionales.tsx').then(m => ({ default: m.ServiciosProfesionales })))
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root')!
+
+const app = (
     <React.StrictMode>
         <HelmetProvider>
             <BrowserRouter>
@@ -54,5 +56,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 </Suspense>
             </BrowserRouter>
         </HelmetProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
 )
+
+if (rootElement.hasChildNodes()) {
+    hydrateRoot(rootElement, app)
+} else {
+    createRoot(rootElement).render(app)
+}
