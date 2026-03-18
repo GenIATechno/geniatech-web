@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para OTEC y OTIC Chile",
-    "description": "Gestión de matrículas, automatización de reportes SENCE y seguimiento de asistencia para organismos técnicos de capacitación en Chile.",
+    "name": "GenIA Tech para OTEC y OTIC",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/otec-otic"
 };
 
@@ -59,12 +57,12 @@ export const OtecOtic = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para OTEC y OTIC en Chile | GenIA Tech — Gestión de Capacitación</title>
-                <meta name="description" content="Software para OTEC y OTIC en Chile. Matrículas online, automatización de reportes SENCE, seguimiento de asistencia y comunicación con inscritos por WhatsApp." />
+                <title>Software OTEC Chile | GenIA Tech — Gestión Cursos SENCE</title>
+                <meta name="description" content="Gestión cursos, asistencia digital y reportes SENCE automatizados para OTEC y OTIC Chile. Software a medida." />
                 <meta name="keywords" content="software OTEC Chile, sistema OTIC Chile, automatización reportes SENCE, gestión matrículas capacitación, digitalización OTEC Santiago" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/otec-otic" />
-                <meta property="og:title" content="Software para OTEC y OTIC en Chile | GenIA Tech" />
-                <meta property="og:description" content="Matrículas online, reportes SENCE automáticos y seguimiento de asistencia para OTEC y OTIC en Chile." />
+                <meta property="og:title" content="OTEC y OTIC en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Gestión cursos, asistencia digital y reportes SENCE automatizados para OTEC y OTIC en Chile. Software a medida. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/otec-otic" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const OtecOtic = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan los OTEC y OTIC antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿El sistema genera los formatos requeridos por SENCE directamente?", r: "Sí. El módulo de reportes SENCE genera las actas, listas de asistencia y formularios en los formatos oficiales vigentes. Se actualiza automáticamente cuando SENCE cambia sus requerimientos. El proceso que tomaba días queda reducido a un clic." },
+                            { p: "¿Cuánto tarda implementar el portal de matrículas?", r: "El portal de matrículas se activa en 5 días hábiles con los cursos, requisitos y formularios de tu OTEC configurados. Los inscritos pueden cargar sus documentos desde el primer día y el equipo administrativo deja de recibir correos con archivos adjuntos." },
+                            { p: "¿Se puede usar para cursos presenciales y e-learning?", r: "Sí. El sistema gestiona ambas modalidades. Los cursos presenciales usan control de asistencia por QR en sala, mientras que los e-learning integran con las principales plataformas LMS o con nuestro módulo propio. El reporte de asistencia es el mismo para SENCE en ambos casos." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

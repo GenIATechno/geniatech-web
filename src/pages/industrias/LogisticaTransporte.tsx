@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Logística y Transporte Chile",
-    "description": "Tracking de flota en tiempo real, optimización de rutas y automatización de despachos para empresas de logística y transporte en Chile.",
+    "name": "GenIA Tech para Logística y Transporte",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/logistica-transporte"
 };
 
@@ -59,12 +57,12 @@ export const LogisticaTransporte = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Logística y Transporte en Chile | GenIA Tech — Tracking de Flota</title>
-                <meta name="description" content="Tracking de flota en tiempo real, optimización de rutas y portal de seguimiento para clientes. Software a medida para empresas de logística y transporte en Chile." />
+                <title>Software Logística Chile | GenIA Tech — Tracking y Automatización</title>
+                <meta name="description" content="Tracking flota, control entregas y automatización operativa para logística Chile. Software a medida deployado en semanas." />
                 <meta name="keywords" content="software logística Chile, tracking flota transporte, optimización rutas logística, sistema despacho Chile, digitalización transporte Santiago" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/logistica-transporte" />
-                <meta property="og:title" content="Software para Logística y Transporte en Chile | GenIA Tech" />
-                <meta property="og:description" content="Tracking de flota en tiempo real y optimización de rutas para empresas de logística en Chile." />
+                <meta property="og:title" content="Logística y Transporte en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Tracking flota, control entregas y automatización operativa para empresas de logística en Chile. Software a medida deployado en semanas. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/logistica-transporte" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const LogisticaTransporte = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las empresas de logística antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Se integra con los sistemas de despacho o TMS existentes?", r: "Sí. Integramos con los principales TMS y sistemas de despacho chilenos mediante APIs o exportaciones automáticas. Si no hay API disponible, construimos el conector a medida. El objetivo es que no haya doble carga de información." },
+                            { p: "¿Cuánto tarda el onboarding de los conductores al sistema?", r: "Los conductores instalan la app en 5 minutos y reciben una capacitación de 30 minutos. A partir de ahí, el sistema es tan simple como WhatsApp: ven sus rutas del día, confirman entregas y reportan novedades con fotos." },
+                            { p: "¿Funciona para flotas mixtas con camiones, furgones y motos?", r: "Sí. El sistema es agnóstico al tipo de vehículo. Cada unidad tiene su perfil con capacidad de carga, restricciones de tránsito y tipo de mercancía que puede transportar. El algoritmo de ruteo considera estas variables al asignar pedidos." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

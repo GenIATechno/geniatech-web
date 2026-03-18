@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Agroindustria Chile",
-    "description": "Supervisión agrícola digital, app de campo y dashboards de producción en tiempo real para empresas agroindustriales en Chile. Caso real: IANSA Chile.",
+    "name": "GenIA Tech para Agroindustria",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/agroindustria"
 };
 
@@ -59,12 +57,12 @@ export const Agroindustria = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Agroindustria en Chile | GenIA Tech — Supervisión de Campo</title>
-                <meta name="description" content="App de supervisión agrícola, dashboard de producción y alertas automáticas para empresas agroindustriales en Chile. Caso real: IANSA Chile. Digitaliza tu campo desde el día 1." />
+                <title>Software Agroindustria Chile | GenIA Tech — Supervisión Terreno</title>
+                <meta name="description" content="Supervisión terreno, trazabilidad operativa y automatización para agroindustria Chile. Caso real: IANSA. Software deployado en semanas." />
                 <meta name="keywords" content="software agroindustria Chile, app supervisión agrícola, digitalización campo Chile, gestión cuadrillas agrícola, tecnología agricultura Chile" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/agroindustria" />
-                <meta property="og:title" content="Software para Agroindustria en Chile | GenIA Tech" />
-                <meta property="og:description" content="Supervisión agrícola digital y dashboards de producción en tiempo real para empresas agroindustriales en Chile. Caso real: IANSA Chile." />
+                <meta property="og:title" content="Agroindustria en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Software supervisión terreno, trazabilidad operativa y automatización para agroindustria en Chile. Sistema probado con IANSA. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/agroindustria" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -191,6 +189,24 @@ export const Agroindustria = () => {
                             >
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las empresas agroindustriales antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Funciona en zonas rurales sin señal de internet?", r: "Sí. La app de supervisión de campo opera completamente offline. Los registros, fotos y formularios se almacenan localmente y se sincronizan automáticamente cuando el supervisor llega a una zona con señal 4G o WiFi." },
+                            { p: "¿Cuánto tiempo tarda la digitalización del proceso de campo?", r: "La transición de papel a digital toma entre 1 y 3 semanas según la cantidad de cultivos y supervisores. Capacitamos al equipo de terreno en media jornada y el primer turno digital se realiza al día siguiente." },
+                            { p: "¿Se puede integrar con sistemas ERP o agrícolas existentes?", r: "Sí. Integramos con los principales ERP agrícolas chilenos y con plataformas de exportación mediante APIs o exportaciones automáticas. Los datos de campo quedan disponibles para tus sistemas de gestión sin duplicar trabajo." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Empresas de Seguridad Privada Chile",
-    "description": "App de guardias, panel operacional en tiempo real y automatización de reportes para empresas de seguridad privada en Chile. Caso real: Inout Seguridad.",
+    "name": "GenIA Tech para Seguridad Privada",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/seguridad-privada"
 };
 
@@ -59,12 +57,12 @@ export const SeguridadPrivada = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Seguridad Privada en Chile | GenIA Tech — App Guardias</title>
-                <meta name="description" content="App de guardias y panel operacional en tiempo real para empresas de seguridad privada en Chile. Control de rondas, incidentes y reportes automáticos para clientes. Caso real: Inout Seguridad." />
+                <title>Software Seguridad Privada Chile | GenIA Tech — Control Guardias</title>
+                <meta name="description" content="App rondas guardias, dashboard operadores y control turnos para seguridad privada en Chile. Caso real: Inout Seguridad. Diagnóstico gratuito." />
                 <meta name="keywords" content="software seguridad privada Chile, app guardias Chile, control rondas guardias, sistema seguridad empresas Chile, automatización seguridad Santiago" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/seguridad-privada" />
-                <meta property="og:title" content="Software para Seguridad Privada en Chile | GenIA Tech" />
-                <meta property="og:description" content="App de guardias con GPS, panel operacional en tiempo real y reportes automáticos para empresas de seguridad privada en Chile." />
+                <meta property="og:title" content="Seguridad Privada en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="App rondas guardias, dashboard operadores y automatización para empresas de seguridad privada en Chile. Sistema probado con Inout Seguridad. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/seguridad-privada" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -191,6 +189,24 @@ export const SeguridadPrivada = () => {
                             >
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las empresas de seguridad antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Cuánto tarda implementar el sistema de guardias?", r: "La app de guardias y el panel de operadores se despliegan en 2 semanas. El onboarding de los guardias toma 1 día: descarga la app, completa el perfil y ya puede registrar rondas. No requiere capacitación técnica." },
+                            { p: "¿Funciona sin internet en terreno?", r: "Sí. La app opera en modo offline y sincroniza los registros de rondas, fotos e incidentes automáticamente cuando recupera señal. Los datos no se pierden aunque el guardia esté en un punto sin cobertura." },
+                            { p: "¿Qué pasa si un guardia pierde el celular?", r: "El acceso se bloquea remotamente desde el panel del operador en menos de 30 segundos. El nuevo dispositivo se activa con las mismas credenciales sin pérdida de datos históricos. El celular del guardia nunca almacena información sensible del cliente." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

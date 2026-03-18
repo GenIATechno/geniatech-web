@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Clínicas y Salud Chile",
-    "description": "Agendamiento online, recordatorios automáticos por WhatsApp y ficha clínica digital para clínicas y centros de salud en Chile.",
+    "name": "GenIA Tech para Clínicas y Salud",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/clinicas-salud"
 };
 
@@ -59,12 +57,12 @@ export const ClinicasSalud = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Clínicas y Salud en Chile | GenIA Tech — Agendamiento y Automatización</title>
-                <meta name="description" content="Agendamiento online, recordatorios automáticos por WhatsApp y ficha clínica digital para clínicas, consultorios y centros de salud en Chile. Reduce inasistencias un 45%." />
+                <title>Software Clínicas Chile | GenIA Tech — Gestión Médica IA</title>
+                <meta name="description" content="Agendamiento inteligente, recordatorios WhatsApp y gestión pacientes para clínicas privadas Chile. Automatización médica." />
                 <meta name="keywords" content="software clínicas Chile, agendamiento médico online, recordatorios WhatsApp salud, ficha clínica digital Chile, automatización clínicas Santiago" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/clinicas-salud" />
-                <meta property="og:title" content="Software para Clínicas y Salud en Chile | GenIA Tech" />
-                <meta property="og:description" content="Agendamiento online, recordatorios automáticos y ficha clínica digital para centros de salud en Chile." />
+                <meta property="og:title" content="Clínicas y Salud en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Agendamiento inteligente, recordatorios WhatsApp y gestión pacientes para clínicas privadas en Chile. Automatización médica a medida. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/clinicas-salud" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const ClinicasSalud = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las clínicas y centros de salud antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Se integra con los sistemas de agenda médica existentes?", r: "Sí. Integramos con los principales sistemas de agendamiento médico chilenos. Si tu clínica usa un sistema propietario, construimos el conector a medida. El paciente agenda en el portal y la hora aparece automáticamente en la agenda del médico." },
+                            { p: "¿Cómo se protegen los datos de los pacientes?", r: "Todos los datos se almacenan cifrados en servidores con certificación de seguridad. Cumplimos con la Ley N° 19.628 de Protección de Datos Personales de Chile. Los datos de salud nunca se comparten con terceros ni se usan para entrenamiento de modelos." },
+                            { p: "¿Cuánto tarda implementar el agendamiento online?", r: "El portal de agendamiento online se activa en 3 días hábiles. La configuración incluye especialidades, médicos, horarios y tipos de prestación. Los recordatorios automáticos por WhatsApp comienzan a enviarse desde el primer día de operación." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Inmobiliarias Chile",
-    "description": "Automatización y software a medida para inmobiliarias y corredoras de propiedades en Chile. CRM inmobiliario, gestión de contratos y seguimiento de leads con IA.",
+    "name": "GenIA Tech para Inmobiliarias",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/inmobiliarias"
 };
 
@@ -59,12 +57,12 @@ export const Inmobiliarias = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Inmobiliarias en Chile | GenIA Tech — CRM y Automatización</title>
-                <meta name="description" content="Software a medida para inmobiliarias y corredoras en Chile. CRM inmobiliario, chatbot WhatsApp para leads, generación de contratos con IA y panel de disponibilidad en tiempo real. Santiago." />
+                <title>Software para Inmobiliarias Chile | GenIA Tech — CRM y Automatización</title>
+                <meta name="description" content="CRM, bot WhatsApp y automatización para inmobiliarias en Chile. Gestión leads, visitas y agentes. Software a medida deployado en semanas." />
                 <meta name="keywords" content="software inmobiliario Chile, CRM para inmobiliarias, automatización inmobiliaria Santiago, gestión de propiedades software, chatbot leads inmobiliarios" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/inmobiliarias" />
-                <meta property="og:title" content="Software para Inmobiliarias en Chile | GenIA Tech" />
-                <meta property="og:description" content="Automatizamos el seguimiento de leads, contratos y cobranza para inmobiliarias en Chile. Resultados desde el primer mes." />
+                <meta property="og:title" content="Inmobiliarias en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="CRM, automatización y software a medida para inmobiliarias en Chile. Bot WhatsApp calificador, gestión de visitas y dashboard gerente. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/inmobiliarias" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -179,6 +177,24 @@ export const Inmobiliarias = () => {
                             >
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las inmobiliarias antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Cuánto tarda implementar el CRM inmobiliario?", r: "El CRM base se configura en 5 días hábiles. Los flujos de WhatsApp y automatización de contratos se agregan en una segunda fase de 2 semanas. La mayoría de las inmobiliarias opera en producción antes del primer mes." },
+                            { p: "¿Funciona con los portales actuales como Portal Inmobiliario?", r: "Sí. Integramos con los principales portales inmobiliarios chilenos mediante webhooks o scraping autorizado. Cada consulta que entra al portal llega automáticamente al CRM y activa el flujo de seguimiento." },
+                            { p: "¿Pueden varios agentes usar el sistema al mismo tiempo?", r: "El sistema es multiusuario desde el diseño. Cada agente tiene su propio panel con su cartera de clientes, sus propiedades asignadas y su pipeline. El gerente ve el rendimiento consolidado de todo el equipo." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

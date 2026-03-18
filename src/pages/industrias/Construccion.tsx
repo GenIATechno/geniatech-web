@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Construcción Chile",
-    "description": "Control de avance de obra, gestión de bodega y coordinación de subcontratistas con software a medida para empresas constructoras en Chile.",
+    "name": "GenIA Tech para Construcción",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/construccion"
 };
 
@@ -59,12 +57,12 @@ export const Construccion = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Construcción en Chile | GenIA Tech — Control de Obra</title>
-                <meta name="description" content="Control de avance de obra, gestión de bodega y reportes automáticos para mandantes. Software a medida para empresas constructoras en Chile. Santiago." />
+                <title>Software Constructoras Chile | GenIA Tech — Control Obras</title>
+                <meta name="description" content="Control subcontratistas, checklist obra digital y dashboard proyectos para constructoras Chile. Software operativo a medida. Diagnóstico gratuito." />
                 <meta name="keywords" content="software construcción Chile, control avance obra, gestión bodega construcción, software constructoras Chile, digitalización obras Santiago" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/construccion" />
-                <meta property="og:title" content="Software para Construcción en Chile | GenIA Tech" />
-                <meta property="og:description" content="Control de obra, bodega y subcontratistas con software a medida para constructoras en Chile." />
+                <meta property="og:title" content="Construcción en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Control subcontratistas, checklist obra digital y dashboard proyectos para empresas constructoras en Chile. Software a medida. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/construccion" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const Construccion = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las constructoras antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Cuánto tarda implementar el sistema en una obra en curso?", r: "El módulo de control de avance se implementa en 1 semana sin interrumpir la obra. El jefe de obra y los jefes de partida reciben acceso el primer día y comienzan a registrar avances desde sus teléfonos desde el minuto uno." },
+                            { p: "¿Los subcontratistas necesitan descargar alguna app?", r: "Depende del módulo. Para control de avance, el jefe de obra registra la información. Para el portal de subcontratistas, estos acceden vía web sin instalación. Diseñamos el flujo para minimizar la fricción de adopción." },
+                            { p: "¿Cómo se maneja el acceso a múltiples proyectos simultáneos?", r: "Cada proyecto tiene su propio espacio aislado con usuarios, permisos y presupuestos independientes. El gerente ve el resumen consolidado de todos los proyectos en un único dashboard, con drilldown por obra cuando necesita detalle." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

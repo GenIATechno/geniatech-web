@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Servicios Profesionales Chile",
-    "description": "CRM de proyectos, automatización de cobros y portal de clientes para estudios jurídicos, consultoras, ingenieras y empresas de servicios profesionales en Chile.",
+    "name": "GenIA Tech para Servicios Profesionales",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/servicios-profesionales"
 };
 
@@ -59,12 +57,12 @@ export const ServiciosProfesionales = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Servicios Profesionales en Chile | GenIA Tech — CRM y Cobros</title>
-                <meta name="description" content="CRM de proyectos, automatización de cobros y portal de clientes para consultoras, estudios jurídicos e ingenieras en Chile. Reduce días de cobro un 30% y cierra propuestas 2x más rápido." />
+                <title>Software Empresas Servicios Chile | GenIA Tech — CRM y IA</title>
+                <meta name="description" content="CRM clientes, automatización contratos y dashboard rentabilidad para empresas servicios Chile. Software operativo." />
                 <meta name="keywords" content="software servicios profesionales Chile, CRM consultoras Chile, automatización cobros servicios, portal clientes proyectos, software estudios Chile" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/servicios-profesionales" />
-                <meta property="og:title" content="Software para Servicios Profesionales en Chile | GenIA Tech" />
-                <meta property="og:description" content="CRM de proyectos, cobros automáticos y portal de clientes para servicios profesionales en Chile." />
+                <meta property="og:title" content="Servicios Profesionales en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="CRM clientes, automatización contratos y dashboard rentabilidad para empresas de servicios en Chile. Software operativo a medida. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/servicios-profesionales" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const ServiciosProfesionales = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las empresas de servicios antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Cuántos usuarios y proyectos puede gestionar el sistema?", r: "El sistema no tiene límite de usuarios ni proyectos. Se escala horizontalmente según el crecimiento de tu empresa. Los permisos son granulares: puedes dar acceso de lectura a un cliente sin que vea otros proyectos o información confidencial." },
+                            { p: "¿Se integra con herramientas como Slack, Teams o correo?", r: "Sí. Las notificaciones de nuevas tareas, aprobaciones y actualizaciones de proyecto se envían al canal que prefiera tu equipo: correo, Slack, Teams o WhatsApp. El portal de clientes también envía notificaciones automáticas sin intervención del equipo." },
+                            { p: "¿Cuánto tarda implementar el CRM de proyectos?", r: "El CRM base con pipeline de propuestas y seguimiento de proyectos se implementa en 1 semana. La migración de proyectos activos desde Excel o herramientas existentes se hace en el mismo período. El equipo está operando en el nuevo sistema antes de los 10 días." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

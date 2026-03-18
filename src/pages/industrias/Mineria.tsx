@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Minería Chile",
-    "description": "Control de faenas, gestión de protocolos HSE y mantenimiento de equipos con software a medida para empresas mineras en Chile.",
+    "name": "GenIA Tech para Minería",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/mineria"
 };
 
@@ -59,12 +57,12 @@ export const Mineria = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Minería en Chile | GenIA Tech — Control de Faenas y HSE</title>
-                <meta name="description" content="Software a medida para empresas mineras en Chile. Control de faenas en terreno, gestión de protocolos HSE, mantenimiento de equipos y dashboard de producción en tiempo real." />
+                <title>Software Minería Chile | GenIA Tech — Control Operativo Faena</title>
+                <meta name="description" content="Control accesos faena, permisos trabajo y trazabilidad equipos para minería Chile. Software operativo a medida. Diagnóstico gratuito." />
                 <meta name="keywords" content="software minería Chile, control faenas mineras, gestión HSE minería, mantenimiento equipos mina, digitalización minería Chile" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/mineria" />
-                <meta property="og:title" content="Software para Minería en Chile | GenIA Tech" />
-                <meta property="og:description" content="Control de faenas, HSE y producción en tiempo real para empresas mineras en Chile." />
+                <meta property="og:title" content="Minería en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Sistema permisos faena, control accesos y trazabilidad equipos para empresas mineras en Chile. Software operativo a medida. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/mineria" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const Mineria = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las empresas mineras antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿El sistema cumple con los estándares regulatorios mineros en Chile?", r: "El sistema se diseña para cumplir con los requerimientos de SERNAGEOMIN en materia de registro de accidentes, permisos de trabajo y gestión de riesgos. Los formatos de reporte son configurables según el reglamento específico de cada faena." },
+                            { p: "¿Funciona en faenas sin conectividad permanente?", r: "Sí. Los módulos de terreno operan offline con sincronización automática. Los permisos de trabajo, registros de acceso y ART se completan sin señal y se envían al sistema central cuando hay conectividad disponible." },
+                            { p: "¿Cuánto tarda implementar el control de accesos en una faena activa?", r: "El módulo de control de accesos se implementa en paralelo con la operación en 2 semanas. Se instalan los puntos de control y se registra al personal existente sin detener la producción. La migración desde papel es gradual y progresiva." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>

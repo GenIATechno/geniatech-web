@@ -8,15 +8,13 @@ import { ParticleBackground } from '../../components/ParticleBackground';
 const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Software para Retail y Comercio Chile",
-    "description": "Inventario en tiempo real, automatización post-venta y fidelización de clientes para empresas de retail y comercio B2B en Chile.",
+    "name": "GenIA Tech para Retail y Comercio",
     "provider": {
-        "@type": "ProfessionalService",
-        "name": "GenIA Tech SpA",
-        "url": "https://geniatechno.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" }
+        "@type": "Organization",
+        "name": "GenIA Tech",
+        "url": "https://geniatechno.com"
     },
-    "areaServed": { "@type": "Country", "name": "Chile" },
+    "areaServed": "Chile",
     "url": "https://geniatechno.com/industrias/retail-comercio"
 };
 
@@ -59,12 +57,12 @@ export const RetailComercio = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative">
             <Helmet>
-                <title>Software para Retail y Comercio en Chile | GenIA Tech — Inventario y Fidelización</title>
-                <meta name="description" content="Inventario en tiempo real, automatización post-venta y fidelización de clientes para empresas de retail y comercio en Chile. Reduce el tiempo de reconciliación de inventario a cero." />
+                <title>Software Retail Chile | GenIA Tech — Control Inventario IA</title>
+                <meta name="description" content="Control inventario tiempo real, alertas stock y automatización pedidos para retail Chile. Dashboard ventas por tienda." />
                 <meta name="keywords" content="software retail Chile, inventario tiempo real, automatización post-venta Chile, fidelización clientes comercio, software comercio B2B Chile" />
                 <link rel="canonical" href="https://geniatechno.com/industrias/retail-comercio" />
-                <meta property="og:title" content="Software para Retail y Comercio en Chile | GenIA Tech" />
-                <meta property="og:description" content="Inventario en tiempo real, post-venta automático y fidelización de clientes para retail en Chile." />
+                <meta property="og:title" content="Retail y Comercio en Chile | GenIA Tech — Automatización e IA" />
+                <meta property="og:description" content="Control inventario, alertas stock y automatización pedidos para empresas retail en Chile. Dashboard ventas en tiempo real. Diagnóstico gratuito." />
                 <meta property="og:url" content="https://geniatechno.com/industrias/retail-comercio" />
                 <meta property="og:type" content="website" />
                 <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -146,6 +144,24 @@ export const RetailComercio = () => {
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-safety/20 rounded-2xl p-8 text-center">
                                 <div className="text-4xl md:text-5xl font-black text-safety mb-3">{r.valor}</div>
                                 <p className="text-gray-400 text-sm leading-relaxed">{r.metrica}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* PREGUNTAS FRECUENTES */}
+                <section className="mb-24">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-4 tracking-tight">Preguntas frecuentes</h2>
+                    <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">Lo que nos preguntan las empresas retail antes de implementar.</p>
+                    <div className="space-y-4 max-w-3xl mx-auto">
+                        {[
+                            { p: "¿Se integra con el POS o sistema de caja actual?", r: "Sí. Integramos con los principales POS chilenos (BSALE, Defontana, SAP, sistemas propios) mediante API o archivos de sincronización. Cada venta descuenta automáticamente el stock sin intervención manual." },
+                            { p: "¿Funciona para múltiples locales simultáneamente?", r: "El sistema está diseñado para operación multilocal. Cada tienda tiene su stock y ventas independientes, con consolidación automática a nivel central. Los traslados entre locales se gestionan con solicitud y confirmación digital entre los encargados." },
+                            { p: "¿Cuánto tiempo toma cargar el inventario inicial al sistema?", r: "Si tienes un Excel o exportación del sistema actual, la carga inicial se hace en 1 día. Si partes desde cero, diseñamos el proceso de toma de inventario con planillas digitales y el equipo hace la carga en una jornada de trabajo por local." },
+                        ].map((f, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
+                                <h3 className="text-base font-bold text-white mb-3">{f.p}</h3>
+                                <p className="text-gray-400 text-sm leading-relaxed">{f.r}</p>
                             </motion.div>
                         ))}
                     </div>
