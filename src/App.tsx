@@ -397,6 +397,8 @@ export default function App() {
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
     const [isIndustriasOpen, setIsIndustriasOpen] = useState(false);
     const [isMobileIndustriasOpen, setIsMobileIndustriasOpen] = useState(false);
+    const [isSoftwareOpen, setIsSoftwareOpen] = useState(false);
+    const [isMobileSoftwareOpen, setIsMobileSoftwareOpen] = useState(false);
 
     useEffect(() => {
         const handleOpenForm = () => {
@@ -476,6 +478,47 @@ export default function App() {
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="hidden md:flex items-center space-x-8 text-sm font-semibold">
+                            {/* Dropdown Software */}
+                            <div className="relative" onMouseEnter={() => setIsSoftwareOpen(true)} onMouseLeave={() => setIsSoftwareOpen(false)}>
+                                <button className={`flex items-center gap-1 cursor-pointer transition-colors ${isSoftwareOpen ? 'text-safety' : 'text-gray-300 hover:text-safety'}`}>
+                                    Software <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isSoftwareOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                <AnimatePresence>
+                                    {isSoftwareOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 8 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute top-full left-0 mt-3 w-64 bg-[#0A0A0A] border border-gray-800 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden z-50"
+                                        >
+                                            <div className="px-5 pt-3 pb-2">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-gray-600">Nuestros Productos</span>
+                                            </div>
+                                            <Link to="/software/accesIA" onClick={() => setIsSoftwareOpen(false)} className="flex items-center gap-3 px-5 py-3.5 hover:bg-[#111] transition-colors border-b border-gray-900 group">
+                                                <div className="w-8 h-8 bg-safety/10 border border-safety/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <span className="text-safety text-xs font-black">AC</span>
+                                                </div>
+                                                <div>
+                                                    <p className="text-white font-bold text-sm group-hover:text-safety transition-colors">AccesIA</p>
+                                                    <p className="text-gray-500 text-xs">Control de acceso logístico</p>
+                                                </div>
+                                            </Link>
+                                            <div className="px-5 py-3 opacity-50 cursor-default">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-8 h-8 bg-gray-800 border border-gray-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                        <span className="text-gray-500 text-xs font-black">GG</span>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-gray-500 font-bold text-sm">GenIA Guard</p>
+                                                        <p className="text-gray-700 text-xs">Próximamente</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                             {/* Dropdown Servicios */}
                             <div className="relative" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
                                 <button className={`flex items-center gap-1 cursor-pointer transition-colors ${isServicesOpen ? 'text-safety' : 'text-gray-300 hover:text-safety'}`}>
@@ -566,6 +609,29 @@ export default function App() {
                             className="md:hidden bg-[#0A0A0A] border-b border-[#1A1A1A] overflow-hidden"
                         >
                             <div className="px-4 py-6 space-y-4 flex flex-col">
+                                {/* Software expandible */}
+                                <div>
+                                    <button
+                                        onClick={() => setIsMobileSoftwareOpen(!isMobileSoftwareOpen)}
+                                        className="w-full flex items-center justify-between text-gray-300 font-semibold text-lg hover:text-safety transition-colors"
+                                    >
+                                        Software
+                                        <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileSoftwareOpen ? 'rotate-180 text-safety' : ''}`} />
+                                    </button>
+                                    <AnimatePresence>
+                                        {isMobileSoftwareOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                className="pl-4 mt-3 space-y-3 border-l-2 border-safety/30 overflow-hidden"
+                                            >
+                                                <Link onClick={() => setIsMenuOpen(false)} to="/software/accesIA" className="block text-gray-400 font-medium hover:text-white transition-colors">AccesIA — Control de Acceso</Link>
+                                                <p className="text-gray-700 font-medium text-sm">GenIA Guard — Próximamente</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                                 {/* Servicios expandible */}
                                 <div>
                                     <button
