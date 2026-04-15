@@ -1,247 +1,184 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-    ArrowLeft, ArrowRight, CheckCircle2, X, Zap, Wifi, WifiOff,
-    QrCode, BarChart3, Package, Shield, Smartphone, Building2,
-    Clock, Star, ChevronDown, MessageCircle, Layers, Globe, Users
-} from 'lucide-react';
+import { ArrowLeft, ChevronDown, MessageCircle, WifiOff, X, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// ─── Schema.org SoftwareApplication ────────────────────────────────────────
+// ─── Config ──────────────────────────────────────────────────────────────
+const WA_LINK = 'https://wa.me/56942762264?text=Hola%2C+me+interesa+solicitar+un+demo+de+AccesIA.+%C2%BFPodemos+coordinar%3F';
+
 const schemaSoftware = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "AccesIA",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Android, Web",
-    "description": "Sistema SaaS de control de acceso inteligente para centros logísticos, parques industriales y bodegas en Chile. Modo offline, escaneo QR de carnet chileno, dashboard en tiempo real y reportes automáticos.",
+    "description": "Sistema SaaS de control de acceso inteligente para centros logísticos, parques industriales y bodegas en Chile. Modo offline, escaneo QR de carnet chileno, dashboard en tiempo real.",
     "offers": [
-        {
-            "@type": "Offer",
-            "name": "Plan Start",
-            "price": "45000",
-            "priceCurrency": "CLP",
-            "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
-        },
-        {
-            "@type": "Offer",
-            "name": "Plan Business",
-            "price": "85000",
-            "priceCurrency": "CLP",
-            "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
-        },
-        {
-            "@type": "Offer",
-            "name": "Plan High-Traffic",
-            "price": "150000",
-            "priceCurrency": "CLP",
-            "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
-        }
+        { "@type": "Offer", "name": "Plan Start", "price": "45000", "priceCurrency": "CLP" },
+        { "@type": "Offer", "name": "Plan Business", "price": "85000", "priceCurrency": "CLP" },
+        { "@type": "Offer", "name": "Plan High-Traffic", "price": "150000", "priceCurrency": "CLP" }
     ],
     "provider": {
         "@type": "Organization",
         "name": "GenIA Tech SpA",
         "url": "https://geniatechno.com",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Santiago",
-            "addressCountry": "CL"
-        }
+        "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressCountry": "CL" }
     },
-    "url": "https://geniatechno.com/software/accesIA",
-    "featureList": [
-        "Modo offline para zonas sin señal",
-        "Escaneo QR de carnet chileno",
-        "Reportes automáticos diarios y semanales",
-        "Dashboard maestro multi-sede en tiempo real",
-        "Hardware Samsung Knox configurado",
-        "API e integraciones avanzadas"
-    ]
+    "url": "https://geniatechno.com/software/accesIA"
 };
 
-// ─── WhatsApp CTA ─────────────────────────────────────────────────────────
-const WA_LINK =
-    'https://wa.me/56942762264?text=Hola%2C+me+interesa+solicitar+un+demo+de+AccesIA.+%C2%BFPodemos+coordinar?';
+// ─── Dashboard Mockup ─────────────────────────────────────────────────────
+const DashboardMockup = () => {
+    const rows = [
+        { time: '13:42', name: 'M. López', bodega: 'Bodega 3' },
+        { time: '13:39', name: 'C. Pérez', bodega: 'Bodega 1' },
+        { time: '13:35', name: 'R. Silva', bodega: 'Bodega 3' },
+        { time: '13:28', name: 'A. Muñoz', bodega: 'Bodega 2' },
+        { time: '13:21', name: 'F. Torres', bodega: 'Bodega 1' },
+    ];
 
-// ─── Features ────────────────────────────────────────────────────────────
-const features = [
-    {
-        icon: WifiOff,
-        title: 'Modo Offline Nativo',
-        desc: 'Opera sin internet en zonas remotas o con señal deficiente. Sincronización automática al reconectarse.',
-        badge: 'Diferenciador clave',
-    },
-    {
-        icon: QrCode,
-        title: 'Escaneo QR Carnet Chileno',
-        desc: 'Registro instantáneo leyendo el código QR del carnet nacional. Validación de identidad en menos de 2 segundos.',
-        badge: null,
-    },
-    {
-        icon: BarChart3,
-        title: 'Dashboard en Tiempo Real',
-        desc: 'Panel maestro que centraliza todas tus sedes en una sola pantalla. Métricas de flujo, alertas y ocupación al instante.',
-        badge: 'High-Traffic',
-    },
-    {
-        icon: Zap,
-        title: 'Reportes Automáticos',
-        desc: 'Reportes diarios y semanales enviados automáticamente al correo del cliente, sin intervención manual.',
-        badge: 'Business+',
-    },
-    {
-        icon: Package,
-        title: 'Gestión de Bodegas',
-        desc: 'Enrolamiento previo de personal y configuración de bodegas. Control granular de quién accede a qué área.',
-        badge: null,
-    },
-    {
-        icon: Smartphone,
-        title: 'Hardware Samsung Knox',
-        desc: 'Dispositivos Samsung Galaxy A17 configurados y bloqueados en modo kiosco. Listos para operar desde el día 1.',
-        badge: 'Opcional',
-    },
-];
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-md mx-auto lg:mx-0"
+        >
+            <div className="bg-[#0D0D0D] border border-white/[0.08] rounded-2xl overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.03)]">
+                {/* Header bar */}
+                <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06]">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.9)]" />
+                        <span className="text-[11px] font-semibold text-white/50 tracking-widest uppercase">AccesIA</span>
+                    </div>
+                    <span className="text-[10px] font-black text-green-400/60 uppercase tracking-widest">● En Vivo</span>
+                </div>
 
-// ─── How it works ────────────────────────────────────────────────────────
-const steps = [
-    {
-        num: '01',
-        title: 'Setup & Onboarding',
-        desc: 'Configuramos tu instancia, enrolamos tu base de datos completa, instalamos el hardware y capacitamos a tu equipo. Todo en un solo día.',
-    },
-    {
-        num: '02',
-        title: 'Operación desde el Día 1',
-        desc: 'Tu equipo registra accesos vía QR o ingreso manual en la app. El sistema funciona con o sin internet gracias al modo offline.',
-    },
-    {
-        num: '03',
-        title: 'Control Total en Tu Email',
-        desc: 'Recibes reportes automáticos cada mañana. Desde el dashboard ves en tiempo real el flujo de personas en todas tus sedes.',
-    },
-];
+                {/* Stats */}
+                <div className="grid grid-cols-3 border-b border-white/[0.06]">
+                    {[
+                        { val: '48', label: 'Registros hoy', accent: false },
+                        { val: '12', label: 'En instalación', accent: true },
+                        { val: '3', label: 'Bodegas abiertas', accent: false },
+                    ].map((s, i) => (
+                        <div key={i} className={`px-4 py-4 ${i < 2 ? 'border-r border-white/[0.06]' : ''}`}>
+                            <div className={`text-2xl font-black leading-none ${s.accent ? 'text-green-400' : 'text-white'}`}>{s.val}</div>
+                            <div className="text-[9px] text-white/25 mt-1.5 leading-tight">{s.label}</div>
+                        </div>
+                    ))}
+                </div>
 
-// ─── Plans ───────────────────────────────────────────────────────────────
-const plans = [
-    {
-        id: 'start',
-        name: 'Start',
-        tagline: 'Para bodegas con flujo bajo',
-        price: '45.000',
-        currency: 'CLP',
-        period: '/mes por sede',
-        color: 'from-gray-700 to-gray-600',
-        borderColor: 'border-gray-700',
-        accentColor: 'text-gray-300',
-        featured: false,
-        features: [
-            'Hasta 600 registros / mes',
-            '1 dispositivo (sesión activa)',
-            'Ingreso manual de patentes',
-            'Escaneo QR carnet chileno',
-            'Modo offline nativo',
-            'Gestión de bodegas y enrolamiento',
-            'Soporte vía email',
-            'Reportes manuales',
-        ],
-        notIncluded: ['Reportes automáticos', 'Dashboard en tiempo real', 'API e integraciones'],
-    },
-    {
-        id: 'business',
-        name: 'Business',
-        tagline: 'El estándar industrial',
-        price: '85.000',
-        currency: 'CLP',
-        period: '/mes por sede',
-        color: 'from-safety to-orange-500',
-        borderColor: 'border-safety',
-        accentColor: 'text-safety',
-        featured: true,
-        features: [
-            'Hasta 3.000 registros / mes',
-            '3 dispositivos simultáneos',
-            'Ingreso manual de patentes',
-            'Escaneo QR carnet chileno',
-            'Modo offline nativo',
-            'Gestión de bodegas y enrolamiento',
-            'Reportes automáticos diarios y semanales',
-            'Soporte prioritario',
-        ],
-        notIncluded: ['Dashboard maestro multi-sede', 'API e integraciones', 'Soporte 24/7'],
-    },
-    {
-        id: 'high-traffic',
-        name: 'High-Traffic',
-        tagline: 'Solución corporativa multi-sede',
-        price: '150.000',
-        currency: 'CLP',
-        period: '/mes por sede',
-        color: 'from-violet-600 to-purple-500',
-        borderColor: 'border-violet-500',
-        accentColor: 'text-violet-400',
-        featured: false,
-        features: [
-            'Registros ilimitados',
-            'Dispositivos ilimitados',
-            'Ingreso manual de patentes',
-            'Escaneo QR carnet chileno',
-            'Modo offline nativo',
-            'Gestión de bodegas y enrolamiento',
-            'Reportes automáticos diarios y semanales',
-            'Dashboard Maestro multi-sede en vivo',
-            'Acceso API e integraciones',
-            'Soporte prioritario 24/7',
-        ],
-        notIncluded: [],
-    },
-];
+                {/* Column headers */}
+                <div className="grid grid-cols-[64px_1fr_80px_28px] gap-2 px-5 py-2 border-b border-white/[0.04]">
+                    {['Hora', 'Nombre', 'Bodega', ''].map((h, i) => (
+                        <div key={i} className="text-[9px] font-black uppercase tracking-widest text-white/15">{h}</div>
+                    ))}
+                </div>
 
-// ─── FAQ ─────────────────────────────────────────────────────────────────
+                {/* Rows */}
+                {rows.map((row, i) => (
+                    <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.9 + i * 0.08, duration: 0.4 }}
+                        className={`grid grid-cols-[64px_1fr_80px_28px] gap-2 items-center px-5 py-2.5 ${i < rows.length - 1 ? 'border-b border-white/[0.04]' : ''}`}
+                    >
+                        <span className="text-[11px] font-mono text-white/30">{row.time}</span>
+                        <span className="text-[11px] font-semibold text-white/70 truncate">{row.name}</span>
+                        <span className="text-[11px] text-white/30 truncate">{row.bodega}</span>
+                        <div className="w-4 h-4 rounded-full bg-green-400/10 flex items-center justify-center border border-green-400/20">
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                        </div>
+                    </motion.div>
+                ))}
+
+                {/* Footer */}
+                <div className="px-5 py-3 border-t border-white/[0.06] flex items-center justify-between bg-[#0A0A0A]">
+                    <span className="text-[9px] text-white/20">Sincronizado hace 8s</span>
+                    <div className="flex items-center gap-1.5">
+                        <WifiOff className="w-3 h-3 text-safety" />
+                        <span className="text-[9px] text-safety font-semibold">Offline activo</span>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
+// ─── Offline Visual ────────────────────────────────────────────────────────
+const OfflineVisual = () => (
+    <div className="relative w-full h-64 flex items-center justify-center">
+        {[1, 2, 3].map(i => (
+            <motion.div
+                key={i}
+                className="absolute rounded-full border border-white/[0.06]"
+                style={{ width: `${i * 120}px`, height: `${i * 120}px` }}
+                animate={{ scale: [1, 1.04, 1], opacity: [0.4, 0.15, 0.4] }}
+                transition={{ duration: 3, repeat: Infinity, delay: i * 0.6, ease: 'easeInOut' }}
+            />
+        ))}
+        <div className="relative z-10 bg-[#111] border border-white/10 w-20 h-20 rounded-2xl flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.6)]">
+            <WifiOff className="w-8 h-8 text-safety" />
+        </div>
+        <motion.div
+            className="absolute bottom-8 right-8 bg-[#0D0D0D] border border-green-500/20 rounded-xl px-3 py-2"
+            animate={{ opacity: [0, 1, 1, 0] }}
+            transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+        >
+            <span className="text-[10px] text-green-400 font-semibold">↑ Sincronizando 12 registros...</span>
+        </motion.div>
+    </div>
+);
+
+// ─── QR Visual ────────────────────────────────────────────────────────────
+const QRVisual = () => (
+    <div className="relative w-full h-64 flex items-center justify-center">
+        <div className="bg-[#0D0D0D] border border-white/[0.08] rounded-2xl p-6 shadow-[0_40px_80px_rgba(0,0,0,0.7)]">
+            <div className="flex items-center gap-2 mb-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-safety animate-pulse" />
+                <span className="text-[10px] text-white/30 uppercase tracking-widest font-semibold">Escaneando...</span>
+            </div>
+            <div className="grid grid-cols-6 gap-1">
+                {Array.from({ length: 36 }).map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="w-4 h-4 rounded-[2px]"
+                        style={{ backgroundColor: Math.random() > 0.5 ? 'rgba(255,255,255,0.8)' : 'transparent' }}
+                        animate={{ opacity: [1, 0.6, 1] }}
+                        transition={{ duration: 1.5, delay: i * 0.02, repeat: Infinity }}
+                    />
+                ))}
+            </div>
+            <motion.div
+                className="mt-4 pt-4 border-t border-white/[0.06]"
+                animate={{ opacity: [0, 1] }}
+                transition={{ duration: 0.5, delay: 1.2, repeat: Infinity, repeatDelay: 2 }}
+            >
+                <p className="text-xs text-white/60 font-semibold">Martín López González</p>
+                <p className="text-[11px] text-white/25 mt-0.5">12.345.678-9 · Autorizado</p>
+            </motion.div>
+        </div>
+    </div>
+);
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────
 const faqs = [
-    {
-        q: '¿El sistema funciona sin internet?',
-        a: 'Sí. AccesIA tiene modo offline nativo. Los registros se guardan localmente y se sincronizan automáticamente cuando se restablece la conexión. Perfecto para zonas de baja señal o parques industriales remotos.',
-    },
-    {
-        q: '¿Qué incluye el setup de $300.000 CLP?',
-        a: 'El onboarding cubre: configuración de tu instancia en Supabase, enrolamiento manual de toda tu base de datos (personal y bodegas), configuración y blindaje del hardware Samsung Knox, y capacitación completa al personal. En contratos multisede el precio baja a $200.000 CLP por sede.',
-    },
-    {
-        q: '¿Puedo empezar con un piloto antes de pagar?',
-        a: 'Sí. Ofrecemos un piloto controlado de 5 días o 50 registros máximo (lo que ocurra primero), con enrolamiento básico para validar la tecnología en tu operación antes de cualquier compromiso de pago.',
-    },
-    {
-        q: '¿Incluyen barreras físicas o motores de acceso?',
-        a: 'No directamente. GenIA Tech es una empresa de software. Las obras civiles (barreras, motores, tótems) se derivan a partners especializados con los que trabajamos. Sí integramos relés Wi-Fi/4G para apertura de portones desde la app como proyecto especial.',
-    },
-    {
-        q: '¿Hay descuentos para múltiples sedes?',
-        a: 'Sí. Recibe un 15% de descuento en el total mensual para contratos de 4 a 10 sedes, y 25% para más de 10 sedes. Contáctanos para una cotización multisede personalizada.',
-    },
-    {
-        q: '¿El sistema funciona fuera de Chile?',
-        a: 'AccesIA está calibrado para el carnet chileno (6 dígitos, QR estándar). La expansión a Colombia, Perú y México está en hoja de ruta con lectores de documentos específicos por país.',
-    },
+    { q: '¿Funciona sin internet?', a: 'AccesIA registra cada entrada y salida aunque no haya red. Cuando vuelve la señal, sincroniza solo. Diseñado para la realidad de los parques industriales chilenos.' },
+    { q: '¿Qué incluye el onboarding de $300.000?', a: 'Configuración de tu instancia, enrolamiento completo de tu base de datos (personal y bodegas), blindado del hardware Samsung Knox y capacitación al personal. En contratos multisede baja a $200.000 por sede.' },
+    { q: '¿Puedo probar antes de pagar?', a: '5 días o 50 registros, lo que ocurra primero. Sin contrato. Sin permanencia. Solo resultados.' },
+    { q: '¿Incluyen barreras físicas?', a: 'No. GenIA Tech es una empresa de software ágil. Las obras civiles se derivan a partners especializados. Sí integramos relés Wi-Fi/4G para apertura de portones desde la app como proyecto especial.' },
+    { q: '¿Descuentos para múltiples sedes?', a: '15% para contratos de 4 a 10 sedes. 25% para más de 10. Contáctanos para una cotización personalizada.' },
 ];
 
-// ─── FAQItem ─────────────────────────────────────────────────────────────
 const FAQItem = ({ q, a }: { q: string; a: string }) => {
     const [open, setOpen] = useState(false);
     return (
-        <div
-            className={`border rounded-2xl overflow-hidden transition-colors ${open ? 'border-safety/40 bg-[#0D0D0D]' : 'border-gray-800 bg-[#0A0A0A]'}`}
-        >
-            <button
-                onClick={() => setOpen(!open)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
-                aria-expanded={open}
-            >
-                <span className="font-semibold text-white text-sm md:text-base">{q}</span>
-                <ChevronDown
-                    className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300 ${open ? 'rotate-180 text-safety' : ''}`}
-                />
+        <div className={`border-b transition-colors duration-200 ${open ? 'border-white/10' : 'border-white/[0.06]'}`}>
+            <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-6 text-left gap-8 group">
+                <span className={`text-base font-semibold transition-colors ${open ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>{q}</span>
+                <ChevronDown className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${open ? 'rotate-180 text-safety' : 'text-white/25'}`} />
             </button>
             <AnimatePresence>
                 {open && (
@@ -249,10 +186,10 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                        transition={{ duration: 0.22 }}
                         className="overflow-hidden"
                     >
-                        <p className="px-6 pb-6 text-gray-400 leading-relaxed text-sm md:text-base">{a}</p>
+                        <p className="pb-6 text-[#6E6E73] leading-relaxed text-sm">{a}</p>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -260,554 +197,435 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
     );
 };
 
-// ─── Main Component ───────────────────────────────────────────────────────
+// ─── Pricing ──────────────────────────────────────────────────────────────
+const plans = [
+    {
+        id: 'start',
+        name: 'Start',
+        desc: 'Para bodegas con flujo bajo',
+        price: '45.000',
+        features: ['600 registros/mes', '1 dispositivo activo', 'Offline nativo', 'QR + manual', 'Soporte email'],
+        excluded: ['Reportes automáticos', 'Dashboard multi-sede'],
+        featured: false,
+    },
+    {
+        id: 'business',
+        name: 'Business',
+        desc: 'El estándar industrial',
+        price: '85.000',
+        features: ['3.000 registros/mes', '3 dispositivos', 'Offline nativo', 'QR + manual', 'Reportes automáticos mensuales', 'Soporte prioritario'],
+        excluded: ['Dashboard multi-sede'],
+        featured: true,
+    },
+    {
+        id: 'high-traffic',
+        name: 'High-Traffic',
+        desc: 'Corporativo y multisede',
+        price: '150.000',
+        features: ['Registros ilimitados', 'Dispositivos ilimitados', 'Offline nativo', 'QR + manual', 'Reportes automáticos semanales y mensuales', 'Dashboard Maestro multi-sede', 'API e integraciones', 'Soporte 24/7'],
+        excluded: [],
+        featured: false,
+    },
+];
+
+// ─── Main ─────────────────────────────────────────────────────────────────
 export const AccesIA = () => {
     useEffect(() => { window.scrollTo(0, 0); }, []);
 
-    const fadeUp = {
-        hidden: { opacity: 0, y: 24 },
-        visible: (i = 0) => ({
-            opacity: 1, y: 0,
-            transition: { duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }
-        }),
-    };
+    const reveal = (delay = 0) => ({
+        initial: { opacity: 0, y: 24 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: '-80px' },
+        transition: { duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] },
+    });
 
     return (
-        <div className="min-h-screen bg-[#000000] text-gray-200 font-sans selection:bg-safety selection:text-white relative overflow-x-hidden">
+        <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-safety selection:text-white overflow-x-hidden">
             <Helmet>
-                <title>AccesIA | Control de Acceso SaaS para Centros Logísticos y Bodegas en Chile</title>
-                <meta
-                    name="description"
-                    content="AccesIA es el sistema SaaS de control de acceso para centros logísticos, parques industriales y bodegas en Chile. Modo offline, escaneo QR carnet, dashboard en tiempo real. Desde $45.000 CLP/mes."
-                />
-                <meta
-                    name="keywords"
-                    content="control de acceso bodegas Chile, sistema acceso logístico SaaS, AccesIA GenIA Tech, control ingreso parque industrial Chile, software acceso bodega offline, escaneo QR carnet control acceso"
-                />
+                <title>AccesIA | Control de Acceso para Centros Logísticos y Bodegas — Chile</title>
+                <meta name="description" content="Sistema SaaS de control de acceso para centros logísticos y bodegas en Chile. Offline nativo, escaneo QR de carnet chileno, dashboard en tiempo real. Desde $45.000 CLP/mes." />
+                <meta name="keywords" content="control de acceso bodegas Chile, software acceso logístico SaaS, AccesIA GenIA Tech, sistema acceso parque industrial, offline control acceso Chile" />
                 <link rel="canonical" href="https://geniatechno.com/software/accesIA" />
-                <meta property="og:title" content="AccesIA — Control de Acceso Inteligente para Logística B2B en Chile" />
-                <meta
-                    property="og:description"
-                    content="Sistema SaaS de control de acceso con modo offline, escaneo QR de carnet chileno y dashboard en tiempo real. Desde $45.000 CLP/mes por sede."
-                />
+                <meta property="og:title" content="AccesIA — Control de Acceso Inteligente para Logística B2B" />
+                <meta property="og:description" content="Offline nativo. QR de carnet chileno. Dashboard en tiempo real. Desde $45.000 CLP/mes por sede." />
                 <meta property="og:url" content="https://geniatechno.com/software/accesIA" />
                 <meta property="og:type" content="website" />
-                <meta property="og:image" content="https://geniatechno.com/tech_glow_bg.png" />
                 <script type="application/ld+json">{JSON.stringify(schemaSoftware)}</script>
             </Helmet>
 
-            {/* ── NAVBAR ─────────────────────────────────────────────── */}
-            <nav className="fixed w-full z-50 bg-[#000000]/85 backdrop-blur-xl border-b border-[#1A1A1A]">
-                <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-20">
-                        <Link to="/" className="flex items-center gap-2 group">
-                            <ArrowLeft className="w-5 h-5 text-gray-500 group-hover:text-safety transition-colors" />
-                            <span className="font-semibold text-gray-400 group-hover:text-white transition-colors text-sm">
-                                Volver al Inicio
-                            </span>
-                        </Link>
-                        <Link to="/" className="text-[22px] font-black tracking-tighter text-white">
-                            Gen<span className="text-safety">IA</span> Tech
-                        </Link>
-                        <a
-                            href={WA_LINK}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            id="accesia-nav-cta"
-                            className="hidden md:flex items-center gap-2 bg-safety text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-[#E64A19] transition-colors shadow-[0_0_20px_rgba(255,87,34,0.25)]"
-                        >
-                            <MessageCircle className="w-4 h-4" /> Solicitar Demo
-                        </a>
-                    </div>
-                </div>
+            {/* ── NAV ─────────────────────────────────────────────────── */}
+            <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 h-16 bg-[#000]/80 backdrop-blur-xl border-b border-white/[0.06]">
+                <Link to="/" className="flex items-center gap-2 group opacity-60 hover:opacity-100 transition-opacity">
+                    <ArrowLeft className="w-4 h-4" />
+                    <span className="text-sm font-medium">GenIA Tech</span>
+                </Link>
+                <span className="text-sm font-semibold tracking-tight">AccesIA</span>
+                <a
+                    href={WA_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="accesia-nav-demo"
+                    className="text-sm font-semibold text-safety hover:text-white transition-colors"
+                >
+                    Solicitar Demo →
+                </a>
             </nav>
 
-            <main className="pt-20">
+            <main className="pt-16">
 
-                {/* ── HERO ───────────────────────────────────────────── */}
-                <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
-                    {/* Background glow */}
-                    <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-safety/8 blur-[120px] rounded-full" />
-                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-violet-600/5 blur-[100px] rounded-full" />
-                        {/* Grid overlay */}
-                        <div
-                            className="absolute inset-0 opacity-[0.03]"
-                            style={{
-                                backgroundImage: 'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)',
-                                backgroundSize: '60px 60px',
-                            }}
-                        />
-                    </div>
+                {/* ── HERO ────────────────────────────────────────────── */}
+                <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-12 py-24">
+                    {/* Subtle grid */}
+                    <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{ backgroundImage: 'linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px)', backgroundSize: '72px 72px' }} />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-40 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
 
-                    <div className="relative z-10 max-w-5xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="inline-flex items-center gap-2 bg-[#111] border border-gray-800 text-gray-300 text-xs font-bold px-4 py-2 rounded-full mb-8 uppercase tracking-widest"
-                        >
-                            <span className="w-2 h-2 rounded-full bg-safety animate-pulse" />
-                            Software SaaS B2B — Control de Acceso
-                        </motion.div>
-
-                        <motion.h1
-                            custom={0}
-                            variants={fadeUp}
-                            initial="hidden"
-                            animate="visible"
-                            className="text-5xl md:text-6xl lg:text-[5rem] font-extrabold leading-[1.05] tracking-tight mb-6"
-                        >
-                            Control de acceso{' '}
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-safety via-orange-400 to-amber-300">
-                                inteligente
-                            </span>
-                            <br className="hidden md:block" />
-                            {' '}para logística B2B
-                        </motion.h1>
-
-                        <motion.p
-                            custom={1}
-                            variants={fadeUp}
-                            initial="hidden"
-                            animate="visible"
-                            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
-                        >
-                            SaaS de gestión de acceso con modo offline, escaneo QR de carnet chileno y
-                            dashboard en tiempo real. Desde{' '}
-                            <span className="text-white font-semibold">$45.000 CLP/mes por sede.</span>
-                        </motion.p>
-
-                        <motion.div
-                            custom={2}
-                            variants={fadeUp}
-                            initial="hidden"
-                            animate="visible"
-                            className="flex flex-col sm:flex-row gap-4 justify-center"
-                        >
-                            <a
-                                href={WA_LINK}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                id="accesia-hero-cta-primary"
-                                className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_30px_rgba(255,87,34,0.35)] hover:shadow-[0_0_50px_rgba(255,87,34,0.55)] transition-all hover:-translate-y-0.5 text-base"
+                    <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
+                        {/* Left: Copy */}
+                        <div>
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.6 }}
+                                className="text-[#6E6E73] text-sm font-semibold tracking-widest uppercase mb-8"
                             >
-                                <MessageCircle className="w-5 h-5" />
-                                Solicitar Demo
-                                <ArrowRight className="w-4 h-4" />
-                            </a>
-                            <a
-                                href="#precios"
-                                id="accesia-hero-cta-secondary"
-                                className="inline-flex items-center gap-2 border border-gray-700 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transition-all hover:border-gray-500 text-base"
+                                AccesIA
+                            </motion.p>
+
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                className="text-[clamp(48px,7vw,88px)] font-extrabold leading-[1.02] tracking-[-0.03em] mb-8"
                             >
-                                Ver Planes y Precios
-                            </a>
-                        </motion.div>
+                                Acceso logístico,<br />
+                                <span className="text-[#6E6E73]">bajo control.</span>
+                            </motion.h1>
 
-                        {/* Trust badges */}
-                        <motion.div
-                            custom={3}
-                            variants={fadeUp}
-                            initial="hidden"
-                            animate="visible"
-                            className="flex flex-wrap gap-3 justify-center mt-12"
-                        >
-                            {[
-                                { icon: WifiOff, label: 'Funciona sin internet' },
-                                { icon: Shield, label: 'Hardware Samsung Knox' },
-                                { icon: Zap, label: 'Piloto en 5 días' },
-                                { icon: Globe, label: 'Expansión LATAM' },
-                            ].map(({ icon: Icon, label }) => (
-                                <span
-                                    key={label}
-                                    className="flex items-center gap-1.5 bg-[#0D0D0D] border border-gray-800 text-gray-400 text-xs font-semibold px-4 py-2 rounded-full"
-                                >
-                                    <Icon className="w-3.5 h-3.5 text-safety" />
-                                    {label}
-                                </span>
-                            ))}
-                        </motion.div>
-                    </div>
-
-                    {/* Scroll cue */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2 }}
-                        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-                    >
-                        <span className="text-xs text-gray-600 uppercase tracking-widest font-semibold">Scroll</span>
-                        <div className="w-px h-10 bg-gradient-to-b from-gray-600 to-transparent" />
-                    </motion.div>
-                </section>
-
-                {/* ── PILOT BANNER ────────────────────────────────────── */}
-                <section className="py-6 bg-[#0A0A0A] border-y border-gray-900">
-                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-safety/10 border border-safety/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <Star className="w-5 h-5 text-safety" />
-                                </div>
-                                <div>
-                                    <p className="text-white font-bold text-sm">Piloto controlado gratuito</p>
-                                    <p className="text-gray-500 text-xs">5 días o 50 registros — lo que ocurra primero. Sin pago previo.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-6 text-sm text-gray-400">
-                                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-green-500" /> Enrolamiento básico incluido</span>
-                                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-green-500" /> Video demo disponible</span>
-                            </div>
-                            <a
-                                href={WA_LINK}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                id="accesia-pilot-cta"
-                                className="flex-shrink-0 bg-[#111] border border-safety/40 text-safety font-bold text-sm px-6 py-3 rounded-full hover:bg-safety/10 transition-colors"
+                            <motion.p
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                className="text-[#6E6E73] text-lg leading-relaxed max-w-md mb-10"
                             >
-                                Iniciar Piloto →
-                            </a>
-                        </div>
-                    </div>
-                </section>
+                                Sistema SaaS de control de acceso para centros logísticos y bodegas. Funciona offline. Reportes automáticos. Desde{' '}
+                                <span className="text-white font-semibold">$45.000 CLP/mes por sede.</span>
+                            </motion.p>
 
-                {/* ── FEATURES ────────────────────────────────────────── */}
-                <section id="funcionalidades" className="py-24 px-4 sm:px-6 lg:px-8 max-w-8xl mx-auto">
-                    <div className="text-center mb-16">
-                        <span className="text-xs font-bold text-safety uppercase tracking-widest mb-3 block">Funcionalidades</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                            Todo lo que necesita tu operación logística
-                        </h2>
-                        <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-                            Diseñado para la realidad de los parques industriales chilenos: zonas sin señal, flujos masivos de personas y necesidad de trazabilidad total.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {features.map((f, i) => (
                             <motion.div
-                                key={f.title}
-                                custom={i}
-                                variants={fadeUp}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: '-60px' }}
-                                className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7 hover:border-gray-700 transition-all group relative overflow-hidden"
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                className="flex flex-wrap gap-4"
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-safety/3 blur-[60px] rounded-full pointer-events-none group-hover:bg-safety/6 transition-colors" />
-                                <div className="flex items-start justify-between mb-5">
-                                    <div className="w-12 h-12 bg-safety/10 border border-safety/20 text-safety rounded-xl flex items-center justify-center">
-                                        <f.icon className="w-6 h-6" />
-                                    </div>
-                                    {f.badge && (
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-safety bg-safety/10 border border-safety/20 px-2.5 py-1 rounded-full">
-                                            {f.badge}
-                                        </span>
-                                    )}
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2">{f.title}</h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* ── HOW IT WORKS ────────────────────────────────────── */}
-                <section className="py-20 bg-[#050505] border-y border-gray-900">
-                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <span className="text-xs font-bold text-safety uppercase tracking-widest mb-3 block">¿Cómo funciona?</span>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                                Operativo en un día
-                            </h2>
-                        </div>
-                        <div className="grid md:grid-cols-3 gap-8 relative">
-                            {/* Connector line */}
-                            <div className="hidden md:block absolute top-8 left-[calc(16.6%+1rem)] right-[calc(16.6%+1rem)] h-px bg-gradient-to-r from-transparent via-safety/30 to-transparent" />
-                            {steps.map((s, i) => (
-                                <motion.div
-                                    key={s.num}
-                                    custom={i}
-                                    variants={fadeUp}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true, margin: '-60px' }}
-                                    className="text-center relative"
-                                >
-                                    <div className="w-16 h-16 bg-[#0A0A0A] border-2 border-safety/40 rounded-2xl flex items-center justify-center mx-auto mb-6 text-safety font-black text-xl">
-                                        {s.num}
-                                    </div>
-                                    <h3 className="text-lg font-bold text-white mb-3">{s.title}</h3>
-                                    <p className="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">{s.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* ── PRICING ─────────────────────────────────────────── */}
-                <section id="precios" className="py-24 px-4 sm:px-6 lg:px-8 max-w-8xl mx-auto">
-                    <div className="text-center mb-16">
-                        <span className="text-xs font-bold text-safety uppercase tracking-widest mb-3 block">Pricing</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                            Planes simples. Crecimiento predecible.
-                        </h2>
-                        <p className="text-gray-400 mt-4 max-w-xl mx-auto text-sm">
-                            Precios por sede activa. Sin comisiones ocultas. Escala cuando lo necesites.
-                        </p>
-                    </div>
-
-                    {/* Plan cards */}
-                    <div className="grid md:grid-cols-3 gap-6 mb-12">
-                        {plans.map((plan, i) => (
-                            <motion.div
-                                key={plan.id}
-                                custom={i}
-                                variants={fadeUp}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: '-60px' }}
-                                className={`relative bg-[#0A0A0A] border-2 ${plan.borderColor} rounded-3xl p-8 flex flex-col ${plan.featured ? 'shadow-[0_0_50px_rgba(255,87,34,0.15)]' : ''}`}
-                            >
-                                {plan.featured && (
-                                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                                        <span className="bg-gradient-to-r from-safety to-orange-500 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full whitespace-nowrap shadow-lg">
-                                            ⭐ Más popular
-                                        </span>
-                                    </div>
-                                )}
-
-                                <div className="mb-6">
-                                    <div className={`inline-flex items-center gap-1.5 bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>
-                                        <span className="text-2xl font-black">Plan {plan.name}</span>
-                                    </div>
-                                    <p className="text-gray-500 text-sm mt-1">{plan.tagline}</p>
-                                </div>
-
-                                <div className="mb-8">
-                                    <div className="flex items-end gap-1">
-                                        <span className="text-5xl font-extrabold text-white tracking-tight">${plan.price}</span>
-                                        <span className="text-gray-500 text-sm mb-2">{plan.currency}</span>
-                                    </div>
-                                    <span className="text-gray-500 text-xs">{plan.period}</span>
-                                </div>
-
-                                <ul className="space-y-3 flex-1 mb-8">
-                                    {plan.features.map((feat) => (
-                                        <li key={feat} className="flex items-start gap-2.5 text-sm text-gray-300">
-                                            <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                                            {feat}
-                                        </li>
-                                    ))}
-                                    {plan.notIncluded.map((feat) => (
-                                        <li key={feat} className="flex items-start gap-2.5 text-sm text-gray-600">
-                                            <X className="w-4 h-4 text-gray-700 flex-shrink-0 mt-0.5" />
-                                            {feat}
-                                        </li>
-                                    ))}
-                                </ul>
-
                                 <a
                                     href={WA_LINK}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    id={`accesia-plan-${plan.id}-cta`}
-                                    className={`w-full text-center py-4 rounded-2xl font-bold text-sm transition-all ${plan.featured
-                                        ? 'bg-gradient-to-r from-safety to-orange-500 text-white shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:shadow-[0_0_30px_rgba(255,87,34,0.5)] hover:-translate-y-0.5'
-                                        : 'bg-[#111] border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-white'
-                                        }`}
+                                    id="accesia-hero-cta"
+                                    className="inline-flex items-center gap-2 bg-safety text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-[#E64A19] transition-colors shadow-[0_0_30px_rgba(255,87,34,0.2)]"
                                 >
-                                    Solicitar Demo →
+                                    <MessageCircle className="w-4 h-4" />
+                                    Solicitar Demo
+                                </a>
+                                <a
+                                    href="#precios"
+                                    className="inline-flex items-center gap-2 text-white/60 font-semibold px-7 py-3.5 rounded-full text-sm border border-white/[0.1] hover:border-white/20 hover:text-white transition-all"
+                                >
+                                    Ver planes →
                                 </a>
                             </motion.div>
-                        ))}
-                    </div>
 
-                    {/* Add-on + Volume discounts */}
-                    <div className="grid md:grid-cols-2 gap-5">
-                        {/* Add-on */}
-                        <div className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
-                            <div className="flex items-start gap-4 mb-5">
-                                <div className="w-11 h-11 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <Wifi className="w-5 h-5 text-blue-400" />
-                                </div>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.8, delay: 0.7 }}
+                                className="flex items-center gap-6 mt-10 pt-8 border-t border-white/[0.06]"
+                            >
                                 <div>
-                                    <h3 className="text-white font-bold">Add-on: Kit Satelital</h3>
-                                    <p className="text-gray-500 text-sm">+$30.000 CLP / mes</p>
+                                    <p className="text-2xl font-black">5 días</p>
+                                    <p className="text-[11px] text-[#6E6E73] mt-0.5">Piloto gratuito</p>
                                 </div>
-                            </div>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Incluye Samsung Galaxy A17 5G configurado con Samsung Knox (modo kiosco de seguridad), carcasa de alto impacto, vidrio templado y conectividad Entel o Starlink. Ideal para zonas sin señal o rurales.
-                            </p>
-                        </div>
-
-                        {/* Volume discounts */}
-                        <div className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-7">
-                            <div className="flex items-start gap-4 mb-5">
-                                <div className="w-11 h-11 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <Building2 className="w-5 h-5 text-green-400" />
-                                </div>
+                                <div className="w-px h-10 bg-white/[0.08]" />
                                 <div>
-                                    <h3 className="text-white font-bold">Descuentos por Volumen</h3>
-                                    <p className="text-gray-500 text-sm">Para contratos multisede</p>
+                                    <p className="text-2xl font-black">2 seg</p>
+                                    <p className="text-[11px] text-[#6E6E73] mt-0.5">Por registro QR</p>
                                 </div>
-                            </div>
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between bg-[#111] rounded-xl px-4 py-3">
-                                    <span className="text-gray-300 text-sm font-medium flex items-center gap-2">
-                                        <Layers className="w-4 h-4 text-gray-500" />
-                                        4 – 10 sedes
-                                    </span>
-                                    <span className="text-green-400 font-bold text-sm">15% descuento</span>
+                                <div className="w-px h-10 bg-white/[0.08]" />
+                                <div>
+                                    <p className="text-2xl font-black">0 red</p>
+                                    <p className="text-[11px] text-[#6E6E73] mt-0.5">Funciona offline</p>
                                 </div>
-                                <div className="flex items-center justify-between bg-[#111] rounded-xl px-4 py-3">
-                                    <span className="text-gray-300 text-sm font-medium flex items-center gap-2">
-                                        <Layers className="w-4 h-4 text-gray-500" />
-                                        +10 sedes
-                                    </span>
-                                    <span className="text-green-400 font-bold text-sm">25% descuento</span>
-                                </div>
-                            </div>
+                            </motion.div>
                         </div>
-                    </div>
 
-                    {/* Setup fee banner */}
-                    <div className="mt-5 bg-[#0A0A0A] border border-yellow-500/20 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6">
-                        <div className="w-11 h-11 bg-yellow-500/10 border border-yellow-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <Clock className="w-5 h-5 text-yellow-400" />
-                        </div>
-                        <div className="flex-1">
-                            <h3 className="text-white font-bold mb-1">Onboarding: $300.000 CLP <span className="text-gray-500 font-normal text-sm">(pago único por sede)</span></h3>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Cubre configuración de instancia Supabase, enrolamiento manual de toda tu base de datos (personal y bodegas), configuración Samsung Knox, blindado físico del equipo y capacitación al personal. <span className="text-yellow-400 font-semibold">En contratos multisede: $200.000 CLP/sede.</span>
-                            </p>
-                        </div>
-                        <a
-                            href={WA_LINK}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            id="accesia-setup-cta"
-                            className="flex-shrink-0 bg-[#111] border border-yellow-500/30 text-yellow-400 font-bold text-sm px-6 py-3 rounded-full hover:bg-yellow-500/10 transition-colors whitespace-nowrap"
-                        >
-                            Cotizar proyecto →
-                        </a>
+                        {/* Right: Dashboard mockup */}
+                        <DashboardMockup />
                     </div>
                 </section>
 
-                {/* ── TARGET INDUSTRIES ───────────────────────────────── */}
-                <section className="py-20 bg-[#050505] border-y border-gray-900">
-                    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-14">
-                            <span className="text-xs font-bold text-safety uppercase tracking-widest mb-3 block">¿Para quién es AccesIA?</span>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                                Industrias que ya lo usan
-                            </h2>
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* ── FEATURE 1: OFFLINE ───────────────────────────────── */}
+                <section className="py-32 px-6 lg:px-12">
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                        <OfflineVisual />
+                        <div>
+                            <motion.p {...reveal(0)} className="text-[#6E6E73] text-xs font-semibold uppercase tracking-widest mb-5">Offline nativo</motion.p>
+                            <motion.h2 {...reveal(0.05)} className="text-[clamp(36px,5vw,64px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-6">
+                                Sin señal.<br />Sin problema.
+                            </motion.h2>
+                            <motion.p {...reveal(0.1)} className="text-[#6E6E73] text-base leading-relaxed max-w-md">
+                                AccesIA registra cada entrada y salida aunque no haya red. Pensado para la realidad de los parques industriales chilenos: zonas remotas, señal intermitente, cero tolerancia a errores. Cuando vuelve la conexión, sincroniza solo.
+                            </motion.p>
                         </div>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {[
-                                { icon: Package, name: 'Centros Logísticos', desc: 'Control de flujo masivo de personal y proveedores' },
-                                { icon: Building2, name: 'Parques Industriales', desc: 'Acceso multi-empresa en una sola plataforma' },
-                                { icon: Layers, name: 'Bodegas de Arriendo', desc: 'Administradoras con múltiples sedes y clientes' },
-                                { icon: Users, name: 'Seguridad Privada', desc: 'Digitalización del servicio de control de acceso' },
-                            ].map(({ icon: Icon, name, desc }, i) => (
-                                <motion.div
-                                    key={name}
-                                    custom={i}
-                                    variants={fadeUp}
-                                    initial="hidden"
-                                    whileInView="visible"
-                                    viewport={{ once: true, margin: '-60px' }}
-                                    className="bg-[#0A0A0A] border border-gray-800 rounded-2xl p-6 text-center hover:border-gray-700 transition-colors group"
-                                >
-                                    <div className="w-12 h-12 bg-safety/10 border border-safety/20 text-safety rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                                        <Icon className="w-6 h-6" />
+                    </div>
+                </section>
+
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* ── FEATURE 2: QR SPEED ──────────────────────────────── */}
+                <section className="py-32 px-6 lg:px-12 bg-[#030303]">
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <motion.p {...reveal(0)} className="text-[#6E6E73] text-xs font-semibold uppercase tracking-widest mb-5">Velocidad de registro</motion.p>
+                            <motion.h2 {...reveal(0.05)} className="text-[clamp(36px,5vw,64px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-6">
+                                El carnet chileno<br />tiene un QR.<br />
+                                <span className="text-[#6E6E73]">Lo leemos en 2 segundos.</span>
+                            </motion.h2>
+                            <motion.p {...reveal(0.1)} className="text-[#6E6E73] text-base leading-relaxed max-w-md">
+                                Nombre, RUT, foto. Todo validado en el momento. Sin tipeo manual, sin errores humanos. Para flujos de hasta 100 personas por día sin fricción.
+                            </motion.p>
+                        </div>
+                        <QRVisual />
+                    </div>
+                </section>
+
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* ── FEATURE 3: DASHBOARD ─────────────────────────────── */}
+                <section className="py-32 px-6 lg:px-12">
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                        {/* Mini dashboard 2 */}
+                        <motion.div {...reveal(0)} className="bg-[#0D0D0D] border border-white/[0.08] rounded-2xl p-6 shadow-[0_40px_80px_rgba(0,0,0,0.7)]">
+                            <div className="flex items-center justify-between mb-5">
+                                <span className="text-xs font-semibold text-white/40 uppercase tracking-widest">Dashboard Maestro</span>
+                                <span className="text-[10px] text-green-400/60 font-bold uppercase tracking-wider">● 3 sedes activas</span>
+                            </div>
+                            <div className="space-y-3">
+                                {[
+                                    { name: 'Bodega Central — Santiago', val: 28, max: 60 },
+                                    { name: 'Planta Norte — Antofagasta', val: 15, max: 40 },
+                                    { name: 'Hub Sur — Concepción', val: 41, max: 80 },
+                                ].map((site, i) => (
+                                    <div key={i}>
+                                        <div className="flex items-center justify-between mb-1.5">
+                                            <span className="text-[11px] text-white/60 font-medium">{site.name}</span>
+                                            <span className="text-[11px] font-mono text-white/40">{site.val}/{site.max}</span>
+                                        </div>
+                                        <div className="h-1 bg-white/[0.05] rounded-full overflow-hidden">
+                                            <motion.div
+                                                className="h-full bg-safety rounded-full"
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: `${(site.val / site.max) * 100}%` }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 1, delay: 0.3 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                                            />
+                                        </div>
                                     </div>
-                                    <h3 className="text-white font-bold mb-2 text-sm">{name}</h3>
-                                    <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                                ))}
+                            </div>
+                            <div className="mt-5 pt-5 border-t border-white/[0.06] flex items-center justify-between">
+                                <span className="text-[10px] text-white/20">84 registros hoy · 3 sedes</span>
+                                <span className="text-[10px] text-safety font-semibold">Ver detalle →</span>
+                            </div>
+                        </motion.div>
+
+                        <div>
+                            <motion.p {...reveal(0)} className="text-[#6E6E73] text-xs font-semibold uppercase tracking-widest mb-5">Multi-sede</motion.p>
+                            <motion.h2 {...reveal(0.05)} className="text-[clamp(36px,5vw,64px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-6">
+                                Todas tus sedes.<br />
+                                <span className="text-[#6E6E73]">Una pantalla.</span>
+                            </motion.h2>
+                            <motion.p {...reveal(0.1)} className="text-[#6E6E73] text-base leading-relaxed max-w-md">
+                                El Dashboard Maestro centraliza el flujo de personas de todas tus instalaciones en tiempo real. Santiago, Antofagasta, Concepción — todo en una sola vista.
+                            </motion.p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* ── STATS ────────────────────────────────────────────── */}
+                <section className="py-24 px-6 lg:px-12 bg-[#030303]">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+                            {[
+                                { val: '$300K', label: 'Setup único', sub: 'Todo incluido. Hardware, enrolamiento, capacitación.' },
+                                { val: '25%', label: 'Descuento multisede', sub: 'Para contratos de más de 10 sedes.' },
+                                { val: '5 días', label: 'Piloto gratuito', sub: 'Sin contrato. Sin permanencia.' },
+                            ].map((s, i) => (
+                                <motion.div key={i} {...reveal(i * 0.1)} className="px-0 md:px-12 first:pl-0 last:pr-0 py-8 md:py-0">
+                                    <p className="text-[clamp(40px,5vw,60px)] font-extrabold tracking-tight leading-none mb-3">{s.val}</p>
+                                    <p className="text-white font-semibold text-base mb-2">{s.label}</p>
+                                    <p className="text-[#6E6E73] text-sm leading-relaxed">{s.sub}</p>
                                 </motion.div>
                             ))}
                         </div>
                     </div>
                 </section>
 
-                {/* ── FAQ ─────────────────────────────────────────────── */}
-                <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-                    <div className="text-center mb-14">
-                        <span className="text-xs font-bold text-safety uppercase tracking-widest mb-3 block">FAQ</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                            Preguntas frecuentes
-                        </h2>
-                    </div>
-                    <div className="space-y-3">
-                        {faqs.map((faq) => (
-                            <FAQItem key={faq.q} q={faq.q} a={faq.a} />
-                        ))}
-                    </div>
-                </section>
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
 
-                {/* ── FINAL CTA ────────────────────────────────────────── */}
-                <section className="py-24 px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-4xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative bg-[#0A0A0A] border border-gray-800 rounded-[2rem] p-12 md:p-16 text-center overflow-hidden"
-                        >
-                            <div className="absolute inset-0 pointer-events-none">
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-safety/6 blur-[100px] rounded-full" />
-                            </div>
-                            <div className="relative z-10">
-                                <span className="text-xs font-bold text-safety uppercase tracking-widest mb-4 block">¿Listo para digitalizarte?</span>
-                                <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-                                    Tu primer piloto,{' '}
-                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-safety to-orange-400">
-                                        sin costo
-                                    </span>
-                                </h2>
-                                <p className="text-gray-400 max-w-xl mx-auto mb-10 text-lg">
-                                    5 días de prueba real en tu operación. Sin contratos. Sin permanencia. Solo resultados.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                {/* ── PRICING ──────────────────────────────────────────── */}
+                <section id="precios" className="py-32 px-6 lg:px-12">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div {...reveal(0)} className="max-w-xl mb-16">
+                            <p className="text-[#6E6E73] text-xs font-semibold uppercase tracking-widest mb-4">Planes</p>
+                            <h2 className="text-[clamp(36px,4vw,52px)] font-extrabold tracking-[-0.03em] leading-tight">
+                                Simple de entender.<br />
+                                <span className="text-[#6E6E73]">Fácil de escalar.</span>
+                            </h2>
+                        </motion.div>
+
+                        <div className="grid lg:grid-cols-3 gap-4">
+                            {plans.map((plan, i) => (
+                                <motion.div
+                                    key={plan.id}
+                                    {...reveal(i * 0.1)}
+                                    className={`relative rounded-2xl p-8 flex flex-col ${plan.featured
+                                        ? 'bg-[#0F0F0F] border border-white/15 shadow-[0_0_60px_rgba(255,87,34,0.08)]'
+                                        : 'bg-[#0A0A0A] border border-white/[0.07]'
+                                        }`}
+                                >
+                                    {plan.featured && (
+                                        <div className="absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-safety/60 to-transparent" />
+                                    )}
+                                    <div className="mb-8">
+                                        <p className="text-white font-bold text-lg mb-1">{plan.name}</p>
+                                        <p className="text-[#6E6E73] text-sm">{plan.desc}</p>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-4xl font-extrabold tracking-tight">${plan.price}</span>
+                                            <span className="text-[#6E6E73] text-sm">CLP/mes por sede</span>
+                                        </div>
+                                    </div>
+
+                                    <ul className="space-y-3 flex-1 mb-8">
+                                        {plan.features.map(f => (
+                                            <li key={f} className="flex items-start gap-2.5 text-sm">
+                                                <CheckCircle2 className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                                                <span className="text-white/70">{f}</span>
+                                            </li>
+                                        ))}
+                                        {plan.excluded.map(f => (
+                                            <li key={f} className="flex items-start gap-2.5 text-sm">
+                                                <X className="w-4 h-4 text-white/15 flex-shrink-0 mt-0.5" />
+                                                <span className="text-white/20">{f}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
                                     <a
                                         href={WA_LINK}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        id="accesia-footer-cta-primary"
-                                        className="inline-flex items-center gap-2 bg-gradient-to-r from-safety to-orange-500 text-white font-bold py-4 px-10 rounded-full shadow-[0_0_30px_rgba(255,87,34,0.35)] hover:shadow-[0_0_50px_rgba(255,87,34,0.55)] transition-all hover:-translate-y-0.5 text-base"
+                                        id={`accesia-plan-${plan.id}`}
+                                        className={`w-full text-center py-3.5 rounded-xl font-semibold text-sm transition-all ${plan.featured
+                                            ? 'bg-safety text-white hover:bg-[#E64A19] shadow-[0_0_20px_rgba(255,87,34,0.2)]'
+                                            : 'border border-white/10 text-white/60 hover:border-white/20 hover:text-white'
+                                            }`}
                                     >
-                                        <MessageCircle className="w-5 h-5" />
-                                        Solicitar Demo por WhatsApp
+                                        Solicitar Demo
                                     </a>
-                                    <Link
-                                        to="/contacto"
-                                        id="accesia-footer-cta-secondary"
-                                        className="inline-flex items-center gap-2 border border-gray-700 text-gray-300 hover:text-white font-bold py-4 px-8 rounded-full transition-all hover:border-gray-500 text-base"
-                                    >
-                                        Enviar Formulario
-                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Add-ons */}
+                        <motion.div {...reveal(0.15)} className="mt-5 grid md:grid-cols-2 gap-4">
+                            <div className="bg-[#0A0A0A] border border-white/[0.07] rounded-2xl p-6 flex items-start gap-4">
+                                <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0 text-blue-400 text-xs font-black">KIT</div>
+                                <div>
+                                    <p className="text-white font-semibold text-sm mb-1">Add-on: Kit Satelital <span className="text-[#6E6E73] font-normal">+$30.000 CLP/mes</span></p>
+                                    <p className="text-[#6E6E73] text-sm leading-relaxed">Samsung Galaxy A17 5G con Knox, carcasa reforzada y conectividad Entel o Starlink. Para zonas sin señal.</p>
                                 </div>
-                                <p className="text-gray-600 text-xs mt-8">
-                                    Atención a empresas B2B · Santiago, Chile · Expansión LATAM 2025
-                                </p>
+                            </div>
+                            <div className="bg-[#0A0A0A] border border-white/[0.07] rounded-2xl p-6 flex items-start gap-4">
+                                <div className="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0 text-green-400 text-xs font-black">%</div>
+                                <div>
+                                    <p className="text-white font-semibold text-sm mb-1">Descuento por volumen</p>
+                                    <p className="text-[#6E6E73] text-sm leading-relaxed">15% para 4–10 sedes · 25% para más de 10 sedes. Onboarding desde <span className="text-white">$200.000 CLP/sede</span> en multisede.</p>
+                                </div>
                             </div>
                         </motion.div>
                     </div>
                 </section>
 
-                {/* ── FOOTER MINI ──────────────────────────────────────── */}
-                <footer className="border-t border-gray-900 py-8 px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-8xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-600">
-                        <span>© 2026 <span className="text-gray-400 font-semibold">Servicios Tecnológicos GenIA SpA</span> · Santiago, Chile</span>
-                        <div className="flex items-center gap-6">
-                            <Link to="/" className="hover:text-gray-400 transition-colors">Inicio</Link>
-                            <Link to="/contacto" className="hover:text-gray-400 transition-colors">Contacto</Link>
-                            <Link to="/casos" className="hover:text-gray-400 transition-colors">Casos B2B</Link>
-                        </div>
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* ── FAQ ──────────────────────────────────────────────── */}
+                <section id="faq" className="py-32 px-6 lg:px-12 bg-[#030303]">
+                    <div className="max-w-3xl mx-auto">
+                        <motion.div {...reveal(0)} className="mb-14">
+                            <p className="text-[#6E6E73] text-xs font-semibold uppercase tracking-widest mb-4">Preguntas frecuentes</p>
+                            <h2 className="text-[clamp(32px,4vw,48px)] font-extrabold tracking-[-0.03em]">Todo lo que necesitas saber.</h2>
+                        </motion.div>
+                        <motion.div {...reveal(0.05)}>
+                            {faqs.map(f => <FAQItem key={f.q} q={f.q} a={f.a} />)}
+                        </motion.div>
                     </div>
-                </footer>
+                </section>
+
+                {/* ── DIVIDER ──────────────────────────────────────────── */}
+                <div className="border-t border-white/[0.06]" />
+
+                {/* ── FINAL CTA ────────────────────────────────────────── */}
+                <section className="py-40 px-6 lg:px-12 text-center relative overflow-hidden">
+                    <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-safety/[0.04] blur-[120px] rounded-full" />
+                    </div>
+                    <div className="relative z-10 max-w-3xl mx-auto">
+                        <motion.p {...reveal(0)} className="text-[#6E6E73] text-xs font-semibold uppercase tracking-widest mb-6">AccesIA</motion.p>
+                        <motion.h2 {...reveal(0.05)} className="text-[clamp(48px,7vw,88px)] font-extrabold leading-[1.02] tracking-[-0.03em] mb-6">
+                            Tu operación,<br />
+                            <span className="text-[#6E6E73]">bajo control.</span>
+                        </motion.h2>
+                        <motion.p {...reveal(0.1)} className="text-[#6E6E73] text-base mb-10 max-w-md mx-auto">
+                            5 días de prueba real en tu bodega o parque industrial. Sin contrato. Sin permanencia.
+                        </motion.p>
+                        <motion.div {...reveal(0.15)} className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a
+                                href={WA_LINK}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                id="accesia-final-cta"
+                                className="inline-flex items-center gap-2 bg-safety text-white font-semibold px-8 py-4 rounded-full text-sm hover:bg-[#E64A19] transition-colors shadow-[0_0_40px_rgba(255,87,34,0.2)]"
+                            >
+                                <MessageCircle className="w-4 h-4" />
+                                Solicitar Demo por WhatsApp
+                            </a>
+                            <Link
+                                to="/contacto"
+                                id="accesia-final-contact"
+                                className="inline-flex items-center gap-2 text-white/50 font-semibold px-8 py-4 rounded-full text-sm border border-white/[0.1] hover:border-white/20 hover:text-white transition-all"
+                            >
+                                Enviar formulario
+                            </Link>
+                        </motion.div>
+                        <motion.p {...reveal(0.2)} className="text-[#6E6E73] text-xs mt-10 opacity-40">
+                            Servicios Tecnológicos GenIA SpA · Santiago, Chile
+                        </motion.p>
+                    </div>
+                </section>
+
             </main>
         </div>
     );
