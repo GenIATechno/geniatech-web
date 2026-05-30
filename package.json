@@ -12,6 +12,7 @@
     "dependencies": {
         "clsx": "^2.1.1",
         "framer-motion": "^11.18.2",
+        "gsap": "^3.15.0",
         "lucide-react": "^0.344.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -34,12 +35,16 @@
     "reactSnap": {
         "source": "dist",
         "destination": "dist",
-        "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+        "puppeteerArgs": [
+            "--no-sandbox",
+            "--disable-setuid-sandbox"
+        ],
         "puppeteerExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
         "concurrency": 1,
         "waitFor": 300,
         "include": [
             "/",
+            "/agrotech",
             "/contacto",
             "/nosotros",
             "/blog",

@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth transition for ScrollyTelling GSAP */
+#agrotech-root {
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+#agrotech-root.dark-mode-scrolly {
+    background-color: #000000 !important;
+    color: #F3F4F6 !important;
+}
 html {
   scroll-behavior: smooth;
 }

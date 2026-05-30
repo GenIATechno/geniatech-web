@@ -14,6 +14,9 @@ const AutomatizacionEmpresarial = lazy(() => import('./pages/servicios/Automatiz
 const SoftwareAMedida = lazy(() => import('./pages/servicios/SoftwareAMedida.tsx').then(m => ({ default: m.SoftwareAMedida })))
 const InteligenciaArtificialB2B = lazy(() => import('./pages/servicios/InteligenciaArtificialB2B.tsx').then(m => ({ default: m.InteligenciaArtificialB2B })))
 
+// Landing pages
+const Agrotech = lazy(() => import('./pages/Agrotech.tsx').then(m => ({ default: m.Agrotech })))
+
 // Software products
 const AccesIA = lazy(() => import('./pages/software/AccesIA.tsx').then(m => ({ default: m.AccesIA })))
 
@@ -43,6 +46,7 @@ const app = (
                         <Route path="/nosotros" element={<Nosotros />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/software/accesIA" element={<AccesIA />} />
+                        <Route path="/agrotech" element={<Agrotech />} />
                         <Route path="/servicios/automatizacion-empresarial" element={<AutomatizacionEmpresarial />} />
                         <Route path="/servicios/software-a-medida" element={<SoftwareAMedida />} />
                         <Route path="/servicios/inteligencia-artificial-b2b" element={<InteligenciaArtificialB2B />} />
