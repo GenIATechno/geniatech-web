@@ -715,8 +715,8 @@ export const Agrotech = () => {
                             <h4 className="text-white font-bold mb-6">Contacto Directo</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
                                 <li>Santiago, Región Metropolitana, Chile</li>
-                                <li>contacto@geniatech.cl</li>
-                                <li>+56 9 1234 5678</li>
+                                <li>ai.geniateam@gmail.com</li>
+                                <li>+56 9 2923 1069</li>
                             </ul>
                         </div>
                     </div>

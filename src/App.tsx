@@ -574,6 +574,7 @@ export default function App() {
                                     )}
                                 </AnimatePresence>
                             </div>
+                            <Link to="/agrotech" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">AgroTech</Link>
                             <Link to="/casos" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
                             <Link to="/nosotros" className="text-gray-300 hover:text-safety transition-colors">Nosotros</Link>
                             <Link to="/blog" className="text-gray-300 hover:text-safety transition-colors">Blog</Link>
@@ -687,6 +688,7 @@ export default function App() {
                                         )}
                                     </AnimatePresence>
                                 </div>
+                                <Link onClick={() => setIsMenuOpen(false)} to="/agrotech" className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">AgroTech</Link>
                                 <Link onClick={() => setIsMenuOpen(false)} to="/casos" className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-safety to-orange-400">Casos B2B</Link>
                                 <Link onClick={() => setIsMenuOpen(false)} to="/nosotros" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Nosotros</Link>
                                 <Link onClick={() => setIsMenuOpen(false)} to="/blog" className="text-gray-300 font-semibold text-lg hover:text-safety transition-colors">Blog</Link>
@@ -1099,6 +1101,7 @@ export default function App() {
                                 <li><Link to="/servicios/automatizacion-empresarial" className="hover:text-white transition-colors">Automatización</Link></li>
                                 <li><Link to="/servicios/software-a-medida" className="hover:text-white transition-colors">Software a Medida</Link></li>
                                 <li><Link to="/servicios/inteligencia-artificial-b2b" className="hover:text-white transition-colors">IA Empresarial</Link></li>
+                                <li><Link to="/agrotech" className="hover:text-emerald-400 text-emerald-500 font-bold transition-colors">AgroTech</Link></li>
                                 <li><Link to="/casos" className="hover:text-white transition-colors">Casos de Éxito</Link></li>
                             </ul>
                         </div>
